@@ -1,7 +1,12 @@
-from django.conf.urls import url
+from django.conf.urls import url,include
 from . import views
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register('doctor', views.doctorView)
+router.register('patient', views.patientView)
+
 
 urlpatterns = [
-    url(r'', views.main, name="index"),
-
+    url('', include(router.urls)),
 ]

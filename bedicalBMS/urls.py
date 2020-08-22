@@ -13,14 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf.urls import include
+from django.conf.urls import include, url
 from django.contrib import admin
 from django.urls import path
-from bedical.views import mainpage, profile, login
+from bedical.views import mainpage, profile, login, register
 
 urlpatterns = [
     path('', mainpage, name='home'),
     path('login/', login, name='login'),
     path('profile/', profile, name='profile'),
+    path('register/', register, name='profile'),
+    url('api/', include('bedical.urls')),
     path('admin/', admin.site.urls),
 ]

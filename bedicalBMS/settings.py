@@ -15,7 +15,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
-
+#PROJECT_NAME = 'awsbedical'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -33,6 +33,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'bedical',
+    'phonenumber_field',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -74,11 +76,23 @@ WSGI_APPLICATION = 'bedicalBMS.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+'''
+'NAME': 'awsbedicalbms',
+'USER': 'bedicaladmin',
+'PASSWORD': 'bedicalroot',
+'HOST': 'localhost',
+'''
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'bedicalbmsdbv1',
+        'USER': 'bedicaladmin',
+        'PASSWORD': 'bedicalroot',
+        'HOST': 'bedicalbms-db.ccfczy1sll4q.us-east-1.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -128,3 +142,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles/mediafiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "staticfiles")
 ]
+PHONENUMBER_DB_FORMAT = 'NATIONAL'
+PHONENUMBER_DEFAULT_REGION = 'MY'
