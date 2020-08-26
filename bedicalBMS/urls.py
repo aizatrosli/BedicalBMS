@@ -16,13 +16,17 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.urls import path
-from bedical.views import mainpage, profile, loginpage, register
+from bedical.views import *
 
 urlpatterns = [
     path('', mainpage, name='home'),
+    path('appointment/', appointmentpage, name='appointment'),
+    path('dashboard/', dashboardpage, name='dash'),
     path('login/', loginpage, name='login'),
-    path('profile/', profile, name='profile'),
-    path('register/', register, name='register'),
-    url('api/', include('bedical.urls')),
+    path('profile/', profilepage, name='profile'),
+    path('patient/', patientpage, name='patient'),
+    path('staff/', staffpage, name='staff'),
+    path('register/', registerpage, name='register'),
+    url('', include('bedical.urls')),
     path('admin/', admin.site.urls),
 ]

@@ -1,0 +1,178 @@
+import uuid
+from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
+
+genders = (
+    ('F', 'Female'),
+    ('M', 'Male'),
+    ('U', 'Unknown'),
+)
+wards = (
+    ('S', 'South'),
+    ('N', 'North'),
+    ('E', 'East'),
+    ('W', 'West'),
+)
+roomtypes = (
+    ('2B', '2 Bedded',),
+    ('1B', 'Single bedded',),
+    ('4B', '4 Bedded',),
+)
+
+# Create your models here.
+
+class BedicalDoctor(models.Model):
+    doctorid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    doctorfirstname = models.CharField(max_length=150)
+    doctorlastname = models.CharField(max_length=150)
+    gender = models.CharField(max_length=1, choices=genders)
+    contact = PhoneNumberField()
+    department = models.CharField(max_length=255)
+
+    def __str__(self):
+        return "Dr {} {}".format(self.doctorfirstname, self.doctorlastname)
+
+    class Meta:
+        managed = True
+        db_table = 'bedical_doctor'
+
+
+class BedicalBed(models.Model):
+
+    level = models.PositiveSmallIntegerField()
+    ward = models.CharField(max_length=1, choices=wards)
+    room = models.PositiveSmallIntegerField()
+    roomtype = models.CharField(max_length=2, choices=roomtypes)
+    bed = models.CharField(max_length=1)
+    #roomid = models.CharField(max_length=10, editable=False, unique=True, default="{}{}{}".format(level, ward, room))
+     #    bedid = models.AutoField()CharField(primary_key=True, max_length=10, editable=False, unique=True, default="{}{}{}{}".format(level, ward, room, bed))
+
+    def __str__(self):
+        return "{}{}{}{}".format(self.level,self.ward,self.room,self.bed)
+
+    class Meta:
+        managed = True
+        db_table = 'bedical_bed'
+
+
+class BedicalPatient(models.Model):
+    patientid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    patientfirstname = models.CharField(max_length=150)
+    patientlastname = models.CharField(max_length=150)
+    gender = models.CharField(max_length=1, choices=genders)
+    dob = models.DateField()
+    contact = PhoneNumberField()
+    location = models.CharField(max_length=255)
+    emergencycontact = PhoneNumberField()
+    bloodgroup = models.CharField(max_length=2, blank=True, null=True)
+
+    def __str__(self):
+        return "{} {}".format(self.patientfirstname, self.patientlastname)
+
+    class Meta:
+        managed = True
+        db_table = 'bedical_patient'
+
+
+class BedicalBedmanagement(models.Model):
+    patientid = models.ForeignKey('BedicalPatient', on_delete=models.DO_NOTHING)
+    bedid = models.ForeignKey('BedicalBed', on_delete=models.DO_NOTHING)
+    admissiondate = models.DateField()
+    dischargedate = models.DateTimeField(blank=True, null=True)
+    equipment = models.TextField(blank=True, null=True)  # This field type is a guess.
+    bedstatus = models.CharField(max_length=1, blank=True, null=True)
+    cleanbed = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = True
+        db_table = 'bedical_bedmanagement'
+
+
+class BedicalDiagnosis(models.Model):
+    patientid = models.ForeignKey('BedicalPatient', on_delete=models.DO_NOTHING)
+    doctorid = models.ForeignKey('BedicalDoctor', on_delete=models.DO_NOTHING)
+    icd10cmcode = models.CharField(max_length=10, blank=True, null=True)
+    symptoms = models.TextField(blank=True, null=True)  # This field type is a guess.
+    severity = models.CharField(max_length=1, blank=True, null=True)
+    treatment = models.TextField(blank=True, null=True)  # This field type is a guess.
+    medicine = models.TextField(blank=True, null=True)  # This field type is a guess.
+    equipment = models.TextField(blank=True, null=True)  # This field type is a guess.
+    surgery = models.BooleanField(blank=True, null=True)
+    operationroom = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = True
+        db_table = 'bedical_diagnosis'
+
+
+class BedicalOperationbooking(models.Model):
+    operationbookingid = models.UUIDField(primary_key=True)
+    patientid = models.ForeignKey('BedicalPatient', on_delete=models.DO_NOTHING)
+    operationdate = models.DateField()
+    doctorid = models.ForeignKey('BedicalDoctor', on_delete=models.DO_NOTHING)
+    operationroom = models.CharField(max_length=50)
+
+    class Meta:
+        managed = True
+        db_table = 'bedical_operationbooking'
+
+
+class BedicalBedbooking(models.Model):
+    bookingid = models.UUIDField(primary_key=True)
+    patientid = models.ForeignKey('BedicalPatient', on_delete=models.DO_NOTHING)
+    admissiondate = models.DateField()
+    equipment = models.TextField(blank=True, null=True)  # This field type is a guess.
+    roomtype = models.CharField(max_length=2, choices=roomtypes)
+    bedid = models.OneToOneField('BedicalBed', on_delete=models.DO_NOTHING)
+
+    class Meta:
+        managed = True
+        db_table = 'bedical_bedbooking'
+
+
+class BedicalPayment(models.Model):
+    paymentid = models.UUIDField(primary_key=True)
+    patientid = models.ForeignKey('BedicalPatient', on_delete=models.DO_NOTHING)
+    bedid = models.OneToOneField('BedicalBed', on_delete=models.DO_NOTHING)
+    insurancecover = models.BooleanField(blank=True, null=True)
+    paymentamount = models.TextField(blank=True, null=True)  # This field type is a guess.
+    paymentstatus = models.CharField(max_length=1, blank=True, null=True)
+    doctorapproval = models.DateTimeField(blank=True, null=True)
+    financialclear = models.DateTimeField(blank=True, null=True)
+    insurer = models.CharField(max_length=100, blank=True, null=True)
+    admissiondate = models.DateField(blank=True, null=True)
+    dischargedate = models.DateField(blank=True, null=True)
+
+    class Meta:
+        managed = True
+        db_table = 'bedical_payment'
+
+
+'''
+class patient(models.Model):
+
+    patientid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    patientfirstname = models.CharField(max_length=50)
+    patientlastname = models.CharField(max_length=50)
+    gender = models.CharField(max_length=1, choices=genders)
+    dob = models.DateField()
+    contact = PhoneNumberField()
+    location = models.CharField(max_length=255)
+    emergencycontact = PhoneNumberField()
+
+    def __str__(self):
+        return "{}:{},{}".format(self.patientid, self.patientlastname, self.patientfirstname)
+
+
+class doctor(models.Model):
+
+    doctorid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    doctorfirstname = models.CharField(max_length=50)
+    doctorlastname = models.CharField(max_length=50)
+    gender = models.CharField(max_length=1, choices=genders)
+    contact = PhoneNumberField()
+    department = models.CharField(max_length=255)
+
+    def __str__(self):
+        return "{}:{},{}".format(self.doctorid, self.doctorlastname, self.doctorfirstname)
+'''

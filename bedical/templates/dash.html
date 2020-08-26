@@ -1,0 +1,155 @@
+{% extends 'index.html' %}
+
+{% load static %}
+{% block content %}
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-lg-4 grid-margin stretch-card">
+        <div class="card">
+          <div class="p-4 border-bottom bg-light">
+            <h4 class="card-title mb-0">{{ titlec1 }}</h4>
+          </div>
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center pb-4">
+              <h4 class="card-title mb-0">Gender</h4>
+              <div id="stacked-bar-traffic-legend"></div>
+            </div>
+            <p class="mb-4">25% more traffic than previous week</p>
+            <canvas id="myChart" style="height:250px"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 grid-margin stretch-card">
+        <div class="card">
+          <div class="p-4 border-bottom bg-light">
+            <h4 class="card-title mb-0">{{ titlec2 }}</h4>
+          </div>
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center pb-4">
+              <h4 class="card-title mb-0">Sales Performance</h4>
+              <div id="line-traffic-legend"></div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <h2 class="mb-0 font-weight-medium">$5,341</h2>
+                <p class="mb-5 text-muted">Sales</p>
+              </div>
+              <div class="col-md-3">
+                <h2 class="mb-0 font-weight-medium">$1,334</h2>
+                <p class="mb-5 text-muted">Profits</p>
+              </div>
+            </div>
+            <canvas id="lineChart" style="height:250px"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 grid-margin stretch-card">
+        <div class="card">
+          <div class="p-4 border-bottom bg-light">
+            <h4 class="card-title mb-0">{{ titlec3 }}</h4>
+          </div>
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center pb-4">
+              <h4 class="card-title mb-0">Site Traffic</h4>
+              <div id="area-traffic-legend"></div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <h2 class="mb-0 font-weight-medium">3,245</h2>
+                <p class="mb-5 text-muted">Users</p>
+              </div>
+              <div class="col-md-4">
+                <h2 class="mb-0 font-weight-medium">12.54%</h2>
+                <p class="mb-5 text-muted">Bounce Rate</p>
+              </div>
+            </div>
+            <canvas id="areaChart" style="height:250px"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 grid-margin stretch-card">
+        <div class="card">
+          <div class="p-4 border-bottom bg-light">
+            <h4 class="card-title mb-0">Bar Chart</h4>
+          </div>
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center pb-4">
+              <h4 class="card-title mb-0">Sales Revenue</h4>
+              <div id="bar-traffic-legend"></div>
+            </div>
+            <p class="mb-4">17% increase in sales than last week</p>
+            <canvas id="barChart" style="height:250px"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 grid-margin stretch-card">
+        <div class="card">
+          <div class="p-4 border-bottom bg-light">
+            <h4 class="card-title mb-0">Mixed Chart</h4>
+          </div>
+          <div class="card-body">
+            <canvas id="mixed-chart" height="100"></canvas>
+            <div class="mr-5" id="mixed-chart-legend"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 grid-margin stretch-card">
+        <div class="card">
+          <div class="p-4 pr-5 border-bottom bg-light d-flex justify-content-between">
+            <h4 class="card-title mb-0">Radar chart</h4>
+            <div id="radar-chart-legend"></div>
+          </div>
+          <div class="card-body">
+            <canvas class="mt-4" id="radarChart" style="height:250px"></canvas>
+            <div class="d-flex mt-5 py-3 border-top">
+              <p class="mb-0 font-weight-semibold"><span class="dot-indicator bg-success"></span> Student A </p>
+              <p class="mb-0 ml-auto text-primary">56%</p>
+            </div>
+            <div class="d-flex pt-3 border-top">
+              <p class="mb-0 font-weight-semibold"><span class="dot-indicator bg-success"></span> Student B</p>
+              <p class="mb-0 ml-auto text-primary">34%</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script type="text/javascript">
+  var endpoint = '/api/data'
+
+  $.ajax({
+    method: "GET",
+    url: endpoint,
+    success: function (data){
+      console.log(data)
+    },
+    error: function (error_data){
+      console.log("error")
+      console.log(error_data)
+    }
+  })
+</script>
+
+<script type="text/javascript">
+var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 10, 5, 2, 20, 30, 45]
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+</script>
+{% endblock %}
