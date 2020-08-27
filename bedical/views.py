@@ -24,6 +24,10 @@ def mainpage(request, *args, **kwargs):
         return render(request, 'home.html', context)
 
 
+def registrationpage(request, *args, **kwargs):
+    return render(request, 'registration.html', {})
+
+
 def patientpage(request, *args, **kwargs):
     return render(request, 'patient.html', {})
 

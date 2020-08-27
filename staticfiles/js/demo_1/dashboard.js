@@ -66,8 +66,7 @@
         },
         elements: {
           point: {
-            radius: 3,
-            backgroundColor: "#fff"
+            radius: 3
           },
           line: {
             tension: 0
@@ -103,7 +102,9 @@
               beginAtZero: false
             },
             gridLines: {
-              drawBorder: false
+              drawBorder: false,
+              color: chartGridLineColor,
+              zeroLineColor: chartGridLineColor
             }
           }],
           yAxes: [{
@@ -111,11 +112,12 @@
               max: 200,
               min: 0,
               stepSize: 50,
-              fontColor: "#858585",
+              fontColor: chartFontcolor,
               beginAtZero: false
             },
             gridLines: {
-              color: '#e2e6ec',
+              color: chartGridLineColor,
+              zeroLineColor: chartGridLineColor,
               display: true,
               drawBorder: false
             }
@@ -197,13 +199,18 @@
             display: false,
           },
           pointLabels: {
-            fontSize: 14
+            fontSize: 14,
+            fontColor: chartFontcolor,
+            color: chartGridLineColor,
+            zeroLineColor: chartGridLineColor
           },
           angleLines: {
-            color: '#e9ebf1'
+            color: chartGridLineColor,
+            zeroLineColor: chartGridLineColor
           },
           gridLines: {
-            color: "#e9ebf1"
+            color: chartGridLineColor,
+            zeroLineColor: chartGridLineColor
           }
         },
         legend: false,
@@ -403,7 +410,7 @@
             59
           ],
           borderColor: '#9B86F1',
-          backgroundColor: '#f2f2ff',
+          backgroundColor: 'rgba(255,255,255,0.2)',
           borderWidth: 3,
           fill: 'origin'
         }]
@@ -482,18 +489,26 @@
         scales: {
           xAxes: [{
             gridLines: {
-              display: false
+              display: false,
+              color: chartGridLineColor,
+              zeroLineColor: chartGridLineColor
             },
             ticks: {
-              display: false
+              display: false,
+              color: chartGridLineColor,
+              zeroLineColor: chartGridLineColor
             }
           }],
           yAxes: [{
             gridLines: {
-              display: false
+              display: false,
+              color: chartGridLineColor,
+              zeroLineColor: chartGridLineColor
             },
             ticks: {
-              display: false
+              display: false,
+              color: chartGridLineColor,
+              zeroLineColor: chartGridLineColor
             }
           }]
         }
@@ -571,22 +586,27 @@
                 max: 400,
                 display: true,
                 beginAtZero: true,
-                fontColor: "#212529",
+                fontColor: chartFontcolor,
                 stepSize: 100
               },
               gridLines: {
                 display: false,
+                color: chartGridLineColor,
+                zeroLineColor: chartGridLineColor
               }
             }],
             xAxes: [{
               stacked: true,
               ticks: {
                 beginAtZero: true,
-                fontColor: "#212529"
+                fontColor: chartFontcolor,
+                color: chartGridLineColor,
+                zeroLineColor: chartGridLineColor
               },
               gridLines: {
-                color: "#e9ebf1",
-                display: true
+                display: true,
+                color: chartGridLineColor,
+                zeroLineColor: chartGridLineColor
               },
               barPercentage: 0.2
             }]
@@ -671,11 +691,12 @@
               ticks: {
                 display: false,
                 beginAtZero: true,
-                fontColor: "#354168"
+                fontColor: chartFontcolor
               },
               gridLines: {
-                color: "rgba(0, 0, 0, 0)",
-                display: false
+                display: false,
+                color: chartGridLineColor,
+                zeroLineColor: '0,0,0,0'
               },
               barPercentage: 0.5,
             }]
@@ -897,8 +918,8 @@
     if ($('#stats-line-graph-1').length) {
       var lineChartCanvas = $("#stats-line-graph-1").get(0).getContext("2d");
       var gradientStrokeFill_1 = lineChartCanvas.createLinearGradient(0, 0, 0, 50);
-      gradientStrokeFill_1.addColorStop(0, 'rgba(131, 144, 255, 0.5)');
-      gradientStrokeFill_1.addColorStop(1, '#fff');
+      gradientStrokeFill_1.addColorStop(0, 'rgb(110,123,247,0.7)');
+      gradientStrokeFill_1.addColorStop(1, 'rgba(255,255,255,0)');
       var lineChart = new Chart(lineChartCanvas, {
         type: 'line',
         data: {
@@ -918,8 +939,8 @@
     if ($('#stats-line-graph-2').length) {
       var lineChartCanvas = $("#stats-line-graph-2").get(0).getContext("2d");
       var gradientStrokeFill_1 = lineChartCanvas.createLinearGradient(0, 0, 0, 50);
-      gradientStrokeFill_1.addColorStop(0, 'rgba(131, 144, 255, 0.5)');
-      gradientStrokeFill_1.addColorStop(1, '#fff');
+      gradientStrokeFill_1.addColorStop(0, 'rgb(110,123,247,0.7)');
+      gradientStrokeFill_1.addColorStop(1, 'rgba(255,255,255,0)');
       var lineChart = new Chart(lineChartCanvas, {
         type: 'line',
         data: {
@@ -939,8 +960,8 @@
     if ($('#stats-line-graph-3').length) {
       var lineChartCanvas = $("#stats-line-graph-3").get(0).getContext("2d");
       var gradientStrokeFill_1 = lineChartCanvas.createLinearGradient(0, 0, 0, 50);
-      gradientStrokeFill_1.addColorStop(0, 'rgba(131, 144, 255, 0.5)');
-      gradientStrokeFill_1.addColorStop(1, '#fff');
+      gradientStrokeFill_1.addColorStop(0, 'rgb(110,123,247,0.7)');
+      gradientStrokeFill_1.addColorStop(1, 'rgba(255,255,255,0)');
       var lineChart = new Chart(lineChartCanvas, {
         type: 'line',
         data: {
@@ -960,8 +981,8 @@
     if ($('#stats-line-graph-4').length) {
       var lineChartCanvas = $("#stats-line-graph-4").get(0).getContext("2d");
       var gradientStrokeFill_1 = lineChartCanvas.createLinearGradient(0, 0, 0, 50);
-      gradientStrokeFill_1.addColorStop(0, 'rgba(131, 144, 255, 0.5)');
-      gradientStrokeFill_1.addColorStop(1, '#fff');
+      gradientStrokeFill_1.addColorStop(0, 'rgb(110,123,247,0.7)');
+      gradientStrokeFill_1.addColorStop(1, 'rgba(255,255,255,0)');
       var lineChart = new Chart(lineChartCanvas, {
         type: 'line',
         data: {

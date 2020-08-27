@@ -24,6 +24,7 @@ urlpatterns = [
     path('dashboard/', dashboardpage, name='dash'),
     path('login/', loginpage, name='login'),
     path('profile/', profilepage, name='profile'),
+    path('registratopm/', registrationpage, name='registration'),
     path('patient/', patientpage, name='patient'),
     path('staff/', staffpage, name='staff'),
     path('register/', registerpage, name='register'),
