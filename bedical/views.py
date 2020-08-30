@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render, redirect
 from .serializers import *
 from .models import *
@@ -18,6 +19,7 @@ def mainpage(request, *args, **kwargs):
         'titlec5': 'Cases by Division',
         'titlec6': 'Bed Vacancy by date',
     }
+    print(dir(request.user))
     if request.user.is_anonymous:
         return redirect('login')
     else:
@@ -55,7 +57,15 @@ def staffpage(request, *args, **kwargs):
 
 
 def dashboardpage(request, *args, **kwargs):
-    return render(request, 'dash.html', {})
+    context = {
+        'titlec1': 'Total Patients',
+        'titlec2': 'Clearance Time by Insurance Company',
+        'titlec3': 'Outpatient to Inpatient Conversion',
+        'titlec4': 'Cases by Insurance Company',
+        'titlec5': 'Cases by Division',
+        'titlec6': 'Bed Vacancy by date',
+    }
+    return render(request, 'dash.html', context)
 
 
 def appointmentpage(request, *args, **kwargs):
@@ -63,7 +73,32 @@ def appointmentpage(request, *args, **kwargs):
 
 
 def profilepage(request, *args, **kwargs):
-    return render(request, 'profile.html', {})
+    context = None
+    getgroup = list(request.user.groups.values_list('name', flat=True))
+    if 'Nurse' in getgroup:
+        bn = BedicalNurse.objects.select_related().filter(nursefirstname=request.user.first_name, nurselastname=request.user.last_name)[0]
+        today_min = datetime.datetime.combine(datetime.datetime(2019, 9, 17), datetime.time.min)
+        today_max = datetime.datetime.combine(datetime.datetime(2020, 5, 17), datetime.time.min)
+        #today_min = datetime.datetime.combine(datetime.date.today(), datetime.time.min)
+        #today_max = datetime.datetime.combine(datetime.date.today(), datetime.time.max)
+        bmdata = BedicalBedmanagement.objects.filter(department=bn.department, admissiondate__range=(today_min, today_max))
+        context = {
+            'admission_list': bmdata,
+            'bio': {'lastname': bn.nurselastname, 'firstname': bn.nursefirstname, 'contact': bn.contact, 'department': bn.department, 'gender': bn.gender},
+        }
+    elif 'Doctor' in getgroup:
+        bd = BedicalDoctor.objects.select_related().filter(doctorfirstname=request.user.first_name, doctorlastname=request.user.last_name)[0]
+        today_min = datetime.datetime.combine(datetime.datetime(2019, 9, 17), datetime.time.min)
+        today_max = datetime.datetime.combine(datetime.datetime(2020, 5, 17), datetime.time.min)
+        # today_min = datetime.datetime.combine(datetime.date.today(), datetime.time.min)
+        # today_max = datetime.datetime.combine(datetime.date.today(), datetime.time.max)
+        bmdata = BedicalBedmanagement.objects.filter(department=bd.doctorid, admissiondate__range=(today_min, today_max))
+        context = {
+            'admission_list': bmdata,
+            'bio': {'lastname': bd.doctorlastname, 'firstname': bd.doctorfirstname, 'contact': bd.contact,
+                    'department': bd.department, 'gender': bd.gender},
+        }
+    return render(request, 'profile.html', context)
 
 
 def loginpage(request, *args, **kwargs):

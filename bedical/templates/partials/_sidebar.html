@@ -9,8 +9,14 @@
           <div class="dot-indicator bg-success"></div>
         </div>
         <div class="text-wrapper">
-          <p class="profile-name">{{ request.user }}</p>
-          <p class="designation">Premium user</p>
+          <p class="profile-name">
+            {% if request.user.last_name and request.user.first_name %}
+              {{ request.user.last_name }}, {{ request.user.first_name }}
+            {% else %}
+              {{ request.user }}
+            {% endif %}
+          </p>
+          <p class="designation">{{ request.user.groups.all.0 }}</p>
         </div>
       </a>
     </li>

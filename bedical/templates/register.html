@@ -7,7 +7,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Star Admin Premium Bootstrap Admin Dashboard Template</title>
+    <title>Bedical BMS - Register</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{% static 'vendors/iconfonts/mdi/css/materialdesignicons.min.css' %}">
     <link rel="stylesheet" href="{% static 'vendors/iconfonts/ionicons/dist/css/ionicons.css' %}">
@@ -35,6 +35,26 @@
               <div class="auto-form-wrapper">
                 <form method="POST" action="#">
                   {% csrf_token %}
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input type="text" class="form-control" name="first_name" placeholder="First Name">
+                      <div class="input-group-append">
+                        <span class="input-group-text">
+                          <i class="mdi mdi-check-circle-outline"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+                      <div class="input-group-append">
+                        <span class="input-group-text">
+                          <i class="mdi mdi-check-circle-outline"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                   <div class="form-group">
                     <div class="input-group">
                       <input type="text" class="form-control" name="username" placeholder="Username">

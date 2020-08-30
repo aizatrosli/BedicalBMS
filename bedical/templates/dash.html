@@ -2,7 +2,31 @@
 
 {% load static %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/demo_1/style.css' %}">
   <div class="content-wrapper">
+    <div class="row page-title-header">
+      <div class="col-12">
+        <div class="page-header">
+          <h4 class="page-title">Dashboard</h4>
+          <div class="quick-link-wrapper w-100 d-md-flex flex-md-wrap">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="page-header-toolbar">
+          <div class="filter-wrapper">
+            <div class="dropdown toolbar-item">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownsorting" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Day</button>
+              <div class="dropdown-menu" aria-labelledby="dropdownsorting">
+                <a class="dropdown-item" href="#">Last Day</a>
+                <a class="dropdown-item" href="#">Last Month</a>
+                <a class="dropdown-item" href="#">Last Year</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-lg-4 grid-margin stretch-card">
         <div class="card">
@@ -152,4 +176,6 @@ var chart = new Chart(ctx, {
     options: {}
 });
 </script>
+    <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+    <script src="{% static 'vendors/js/vendor.bundle.addons.js' %}"></script>
 {% endblock %}

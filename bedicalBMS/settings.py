@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'bedical',
-    'jquery',
+    #'jquery',
     'phonenumber_field',
     'rest_framework',
     'django.contrib.admin',
@@ -96,7 +96,7 @@ WSGI_APPLICATION = 'bedicalBMS.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'paulinedb',
+        'NAME': 'paulinedbv2',
         'USER': 'bedicaladmin',
         'PASSWORD': 'bedicalroot',
 

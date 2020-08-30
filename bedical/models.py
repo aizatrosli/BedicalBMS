@@ -75,7 +75,6 @@ class AuthUserUserPermissions(models.Model):
 
 
 class BedicalBed(models.Model):
-
     bedno = models.CharField(max_length=10)
     roomid = models.CharField(max_length=10)
     level = models.CharField(max_length=2, blank=True, null=True)
@@ -84,36 +83,45 @@ class BedicalBed(models.Model):
     bed = models.CharField(max_length=2, blank=True, null=True)
     roomtype = models.CharField(max_length=20, blank=True, null=True)
     bedid = models.UUIDField(primary_key=True)
+    department = models.CharField(max_length=20, blank=True, null=True)
+    distancetonursestation = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'bedical_bed'
 
 
 class BedicalBedbooking(models.Model):
     bookingid = models.UUIDField(primary_key=True)
     patientid = models.UUIDField()
+    diagnosisid = models.UUIDField()
     admissiondate = models.DateField()
     equipment = models.TextField(blank=True, null=True)  # This field type is a guess.
     roomtype = models.CharField(max_length=20, blank=True, null=True)
     bedid = models.UUIDField(blank=True, null=True)
+    doctorid = models.UUIDField(blank=True, null=True)
+    department = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'bedical_bedbooking'
 
 
 class BedicalBedmanagement(models.Model):
-    patientid = models.UUIDField()
+    managementid = models.UUIDField(primary_key=True)
+    patientid = models.ForeignKey('BedicalPatient', models.DO_NOTHING, db_column='patientid')
     admissiondate = models.DateField()
     dischargedate = models.DateTimeField(blank=True, null=True)
     equipment = models.TextField(blank=True, null=True)  # This field type is a guess.
     bedstatus = models.CharField(max_length=50, blank=True, null=True)
     cleanbed = models.DateTimeField(blank=True, null=True)
-    bedid = models.UUIDField()
+    bedid = models.ForeignKey(BedicalBed, models.DO_NOTHING, db_column='bedid')
+    diagnosisid = models.ForeignKey('BedicalDiagnosis', models.DO_NOTHING, db_column='diagnosisid', blank=True, null=True)
+    doctorid = models.UUIDField(blank=True, null=True)
+    department = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'bedical_bedmanagement'
 
 
@@ -121,17 +129,18 @@ class BedicalDiagnosis(models.Model):
     diagnosisid = models.UUIDField(primary_key=True)
     patientid = models.UUIDField()
     doctorid = models.UUIDField()
-    icd10cmcode = models.CharField(max_length=10, blank=True, null=True)
+    icd10cmcode = models.CharField(max_length=255, blank=True, null=True)
     symptoms = models.CharField(max_length=100, blank=True, null=True)
-    severity = models.CharField(max_length=1, blank=True, null=True)
+    severity = models.CharField(max_length=10, blank=True, null=True)
     treatment = models.CharField(max_length=100, blank=True, null=True)
     medicine = models.CharField(max_length=100, blank=True, null=True)
     equipment = models.CharField(max_length=100, blank=True, null=True)
     surgery = models.BooleanField(blank=True, null=True)
     operationroom = models.CharField(max_length=50, blank=True, null=True)
+    department = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'bedical_diagnosis'
 
 
@@ -141,37 +150,37 @@ class BedicalDiagnosisEquipment(models.Model):
     equipment = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'bedical_diagnosis_equipment'
 
 
 class BedicalDiagnosisMedicine(models.Model):
     medicineid = models.UUIDField(primary_key=True)
-    diganosisid = models.UUIDField(blank=True, null=True)
-    medicine = models.CharField(max_length=50, blank=True, null=True)
+    diagnosisid = models.UUIDField(blank=True, null=True)
+    medicine = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'bedical_diagnosis_medicine'
 
 
 class BedicalDiagnosisSymptom(models.Model):
     symptomid = models.UUIDField(primary_key=True)
-    diganosisid = models.UUIDField(blank=True, null=True)
+    diagnosisid = models.UUIDField(blank=True, null=True)
     symptom = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'bedical_diagnosis_symptom'
 
 
 class BedicalDiagnosisTreatment(models.Model):
     treatmentid = models.UUIDField(primary_key=True)
-    diganosisid = models.UUIDField(blank=True, null=True)
+    diagnosisid = models.UUIDField(blank=True, null=True)
     treatment = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'bedical_diagnosis_treatment'
 
 
@@ -184,19 +193,33 @@ class BedicalDoctor(models.Model):
     department = models.CharField(max_length=255)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'bedical_doctor'
+
+
+class BedicalNurse(models.Model):
+    nurseid = models.UUIDField(primary_key=True)
+    nursefirstname = models.CharField(max_length=150)
+    nurselastname = models.CharField(max_length=150)
+    gender = models.CharField(max_length=1)
+    contact = models.CharField(max_length=128)
+    department = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'bedical_nurse'
 
 
 class BedicalOperationbooking(models.Model):
     operationbookingid = models.UUIDField(primary_key=True)
     patientid = models.UUIDField()
+    diagnosisid = models.UUIDField()
     operationdate = models.DateField()
     doctorid = models.UUIDField()
     operationroom = models.CharField(max_length=50)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'bedical_operationbooking'
 
 
@@ -212,7 +235,7 @@ class BedicalPatient(models.Model):
     bloodgroup = models.CharField(max_length=2, blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'bedical_patient'
 
 
@@ -225,12 +248,13 @@ class BedicalPayment(models.Model):
     financialclear = models.DateTimeField(blank=True, null=True)
     insurer = models.CharField(max_length=100, blank=True, null=True)
     admissiondate = models.DateField(blank=True, null=True)
-    dischargedate = models.DateField(blank=True, null=True)
+    dischargedate = models.DateTimeField(blank=True, null=True)
     paymentid = models.UUIDField(primary_key=True)
     bedid = models.UUIDField()
+    startdischarge = models.DateTimeField(blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'bedical_payment'
 
 

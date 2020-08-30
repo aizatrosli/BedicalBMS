@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="container-scroller">
-      {% include 'partials/navbar.html' %}
+      {% include 'partials/_navbar.html' %}
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_sidebar.html -->
@@ -54,9 +54,9 @@
     <!-- End plugin js for this page-->
     <!-- inject:js -->
     <script src="{% static 'js/shared/off-canvas.js' %}"></script>
+    <script src="{% static 'js/shared/misc.js' %}"></script>
     <script src="{% static 'js/shared/hoverable-collapse.js' %}"></script>
     <script src="{% static 'js/shared/settings.js' %}"></script>
-    <script src="{% static 'js/shared/misc.js' %}"></script>
     <script src="{% static 'js/shared/todolist.js' %}"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->

@@ -7,43 +7,13 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <div class="profile-header text-white">
-              <div class="d-flex justify-content-center justify-content-md-between mx-4 mx-xl-5 px-xl-5 flex-wrap">
-                <div class="profile-info d-flex align-items-center justify-content-center flex-wrap mr-sm-3">
-                  <img class="rounded-circle img-lg mb-3 mb-sm-0" src="./Star Admin Premium Bootstrap Admin Dashboard Template_files/profile.jpg" alt="profile image">
-                  <div class="wrapper pl-sm-4">
-                    <p class="profile-user-name text-center text-sm-left">Richard V.Welsh (UI/UX Designer)</p>
-                    <div class="wrapper d-flex align-items-center justify-content-center flex-wrap">
-                      <p class="profile-user-designation text-center text-md-left my-2 my-md-0">User Experience Specialist</p>
-                      <div class="br-wrapper br-theme-css-stars"><select id="example-css" name="rating" autocomplete="off" style="display: none;">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                      </select><div class="br-widget"><a href="https://www.bootstrapdash.com/demo/star-admin-pro/src/demo_1/pages/samples/profile.html#" data-rating-value="1" data-rating-text="1" class="br-selected br-current"></a><a href="https://www.bootstrapdash.com/demo/star-admin-pro/src/demo_1/pages/samples/profile.html#" data-rating-value="2" data-rating-text="2"></a><a href="https://www.bootstrapdash.com/demo/star-admin-pro/src/demo_1/pages/samples/profile.html#" data-rating-value="3" data-rating-text="3"></a><a href="https://www.bootstrapdash.com/demo/star-admin-pro/src/demo_1/pages/samples/profile.html#" data-rating-value="4" data-rating-text="4"></a><a href="https://www.bootstrapdash.com/demo/star-admin-pro/src/demo_1/pages/samples/profile.html#" data-rating-value="5" data-rating-text="5"></a></div></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="details mt-2 mt-md-0">
-                  <div class="detail-col pr-3 mr-3">
-                    <p>Projects</p>
-                    <p>130</p>
-                  </div>
-                  <div class="detail-col">
-                    <p>Projects</p>
-                    <p>130</p>
-                  </div>
-                </div>
-              </div>
-            </div>
             <div class="profile-body">
               <ul class="nav tab-switch" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link active" id="user-profile-info-tab" data-toggle="pill" href="https://www.bootstrapdash.com/demo/star-admin-pro/src/demo_1/pages/samples/profile.html#user-profile-info" role="tab" aria-controls="user-profile-info" aria-selected="true">Profile</a>
+                  <a class="nav-link active" id="user-profile-info-tab" data-toggle="pill" href="#user-profile-info" role="tab" aria-controls="user-profile-info" aria-selected="true">Profile</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="user-profile-activity-tab" data-toggle="pill" href="https://www.bootstrapdash.com/demo/star-admin-pro/src/demo_1/pages/samples/profile.html#user-profile-activity" role="tab" aria-controls="user-profile-activity" aria-selected="false">Activity</a>
+                  <a class="nav-link" id="user-profile-activity-tab" data-toggle="pill" href="#user-profile-activity" role="tab" aria-controls="user-profile-activity" aria-selected="false">Activity</a>
                 </li>
               </ul>
               <div class="row">
@@ -54,56 +24,23 @@
                         <table class="table table-borderless w-100 mt-4">
                           <tbody><tr>
                             <td>
-                              <strong>Full Name :</strong> Johnathan Deo</td>
+                              <strong>Full Name :</strong> {{bio.lastname}}, {{bio.firstname}}</td>
                             <td>
-                              <strong>Website :</strong> staradmin.com</td>
+                              <strong>Gender :</strong> {{bio.gender}}</td>
                           </tr>
                           <tr>
                             <td>
-                              <strong>Location :</strong> USA</td>
+                              <strong>Role :</strong> {{request.user.groups.all.0}}</td>
                             <td>
-                              <strong>Email :</strong> Richard@staradmin.com</td>
+                              <strong>Contact :</strong> {{bio.contact}}</td>
                           </tr>
                           <tr>
                             <td>
-                              <strong>Languages :</strong> English, German, Spanish.</td>
+                              <strong>Department :</strong> {{bio.department}}</td>
                             <td>
-                              <strong>Phone :</strong> +73646 4563</td>
+                              <strong> </strong>  </td>
                           </tr>
                         </tbody></table>
-                      </div>
-                      <div class="row mt-5 pb-4 border-bottom">
-                        <div class="col-md-6">
-                          <div class="d-flex align-items-start pb-3 border-bottom">
-                            <img src="./Star Admin Premium Bootstrap Admin Dashboard Template_files/01.png" alt="brand logo">
-                            <div class="wrapper pl-4">
-                              <p class="font-weight-bold mb-0">Photoshop</p>
-                              <small>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie</small>
-                            </div>
-                          </div>
-                          <div class="d-flex align-items-start py-3 border-bottom">
-                            <img src="./Star Admin Premium Bootstrap Admin Dashboard Template_files/02.png" alt="brand logo">
-                            <div class="wrapper pl-4">
-                              <p class="font-weight-bold mb-0">Photoshop</p>
-                              <small>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie</small>
-                            </div>
-                          </div>
-                          <div class="d-flex align-items-start py-3">
-                            <img src="./Star Admin Premium Bootstrap Admin Dashboard Template_files/03.png" alt="brand logo">
-                            <div class="wrapper pl-4">
-                              <p class="font-weight-bold mb-0">Photoshop</p>
-                              <small>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie</small>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="row">
-                            <div class="col-12">
-                              <img class="img-fluid rounded" src="./Star Admin Premium Bootstrap Admin Dashboard Template_files/banner_01.jpg" alt="banner image"> </div>
-                            <div class="col-12 mt-3">
-                              <img class="img-fluid rounded" src="./Star Admin Premium Bootstrap Admin Dashboard Template_files/banner_02.jpg" alt="banner image"> </div>
-                          </div>
-                        </div>
                       </div>
                       <div class="row">
                         <div class="col-12 mt-5">
@@ -223,88 +160,15 @@
                   </div>
                 </div>
                 <div class="col-md-3">
-                  <h5 class="my-4">Who to follow</h5>
-                  <div class="new-accounts">
-                    <ul class="chats ps">
-                      <li class="chat-persons">
-                        <a href="https://www.bootstrapdash.com/demo/star-admin-pro/src/demo_1/pages/samples/profile.html#">
-                          <span class="pro-pic">
-                            <img src="./Star Admin Premium Bootstrap Admin Dashboard Template_files/face2.jpg" alt="profile image"> </span>
-                          <div class="user">
-                            <p class="u-name">Marina Michel</p>
-                            <p class="u-designation">Business Development</p>
-                          </div>
-                        </a>
+                  <h5 class="my-4">Today Patient List</h5>
+                  <ul class="timeline">
+                    {% for obj in admission_list%}
+                      <li class="timeline-item">
+                        <p class="timeline-content"><a href="#">{{obj.patientid.patientlastname}}, {{obj.patientid.patientfirstname}}</a> will admitted in ward {{obj.bedid.bedno}}</p>
+                        <p class="event-time">{{obj.admissiondate}}</p>
                       </li>
-                      <li class="chat-persons">
-                        <a href="https://www.bootstrapdash.com/demo/star-admin-pro/src/demo_1/pages/samples/profile.html#">
-                          <span class="pro-pic">
-                            <img src="./Star Admin Premium Bootstrap Admin Dashboard Template_files/face3.jpg" alt="profile image"> </span>
-                          <div class="user">
-                            <p class="u-name">Stella Johnson</p>
-                            <p class="u-designation">SEO Expert</p>
-                          </div>
-                        </a>
-                      </li>
-                      <li class="chat-persons">
-                        <a href="https://www.bootstrapdash.com/demo/star-admin-pro/src/demo_1/pages/samples/profile.html#">
-                          <span class="pro-pic">
-                            <img src="./Star Admin Premium Bootstrap Admin Dashboard Template_files/face4.jpg" alt="profile image"> </span>
-                          <div class="user">
-                            <p class="u-name">Peter Joo</p>
-                            <p class="u-designation">UI/UX designer</p>
-                          </div>
-                        </a>
-                      </li>
-                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></ul>
-                  </div>
-                  <h5 class="my-4">Pending</h5>
-                  <div class="new-accounts">
-                    <ul class="chats">
-                      <li class="chat-persons">
-                        <a href="https://www.bootstrapdash.com/demo/star-admin-pro/src/demo_1/pages/samples/profile.html#">
-                          <span class="pro-pic">
-                            <img src="./Star Admin Premium Bootstrap Admin Dashboard Template_files/face5.jpg" alt="profile image"> </span>
-                          <div class="user">
-                            <p class="u-name">Marina Michel</p>
-                            <p class="u-designation">Business Development</p>
-                            <span class="d-flex align-items-center mt-2">
-                              <span class="btn btn-xs btn-rounded btn-outline-light mr-2">Buyer</span>
-                              <span class="btn btn-xs btn-rounded btn-outline-primary">Lead</span>
-                            </span>
-                          </div>
-                        </a>
-                      </li>
-                      <li class="chat-persons">
-                        <a href="https://www.bootstrapdash.com/demo/star-admin-pro/src/demo_1/pages/samples/profile.html#">
-                          <span class="pro-pic">
-                            <img src="./Star Admin Premium Bootstrap Admin Dashboard Template_files/face6.jpg" alt="profile image"> </span>
-                          <div class="user">
-                            <p class="u-name">Stella Johnson</p>
-                            <p class="u-designation">SEO Expert</p>
-                            <span class="d-flex align-items-center mt-2">
-                              <span class="btn btn-xs btn-rounded btn-outline-light mr-2">Buyer</span>
-                              <span class="btn btn-xs btn-rounded btn-outline-primary">Lead</span>
-                            </span>
-                          </div>
-                        </a>
-                      </li>
-                      <li class="chat-persons">
-                        <a href="https://www.bootstrapdash.com/demo/star-admin-pro/src/demo_1/pages/samples/profile.html#">
-                          <span class="pro-pic">
-                            <img src="./Star Admin Premium Bootstrap Admin Dashboard Template_files/face7.jpg" alt="profile image"> </span>
-                          <div class="user">
-                            <p class="u-name">Peter Joo</p>
-                            <p class="u-designation">UI/UX designer</p>
-                            <span class="d-flex align-items-center mt-2">
-                              <span class="btn btn-xs btn-rounded btn-outline-light mr-2">Buyer</span>
-                              <span class="btn btn-xs btn-rounded btn-outline-primary">Lead</span>
-                            </span>
-                          </div>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                    {% endfor %}
+                  </ul>
                 </div>
               </div>
             </div>
