@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'bedical',
+    'jquery',
     'phonenumber_field',
     'rest_framework',
     'django.contrib.admin',
@@ -98,6 +99,7 @@ DATABASES = {
         'NAME': 'paulinedb',
         'USER': 'bedicaladmin',
         'PASSWORD': 'bedicalroot',
+
         'HOST': 'localhost',
         'PORT': '5432',
     }

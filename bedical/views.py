@@ -24,16 +24,34 @@ def mainpage(request, *args, **kwargs):
         return render(request, 'home.html', context)
 
 
+def searchpage(request, *args, **kwargs):
+    return render(request, 'search.html')
+
+
+def patientprofile(request, bid, *args, **kwargs):
+    context = {
+        'bid': bid,
+    }
+    return render(request, 'patient.html', context)
+
+
+def staffprofile(request, bid, *args, **kwargs):
+    context = {
+        'bid': bid,
+    }
+    return render(request, 'staff.html', context)
+
+
 def registrationpage(request, *args, **kwargs):
     return render(request, 'registration.html', {})
 
 
 def patientpage(request, *args, **kwargs):
-    return render(request, 'patient.html', {})
+    return render(request, 'patients.html', {})
 
 
 def staffpage(request, *args, **kwargs):
-    return render(request, 'staff.html', {})
+    return render(request, 'staffs.html', {})
 
 
 def dashboardpage(request, *args, **kwargs):

@@ -1,0 +1,89 @@
+{% extends 'index.html' %}
+
+{% load static %}
+{% block content %}
+<div class="content-wrapper">
+  <div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h3 >Search Result For <u class="ml-2">"bootstrapdash"</u></h3>
+          <ul class="nav nav-tabs tab-solid tab-solid-danger" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="tab-patient" data-toggle="tab" href="#patient" role="tab" aria-controls="patient" aria-selected="false">Patient</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="tab-bed" data-toggle="tab" href="#bed" role="tab" aria-controls="bed" aria-selected="false">Bed</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="tab-staff" data-toggle="tab" href="#staff" role="tab" aria-controls="staff" aria-selected="false">Staff</a>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-solid">
+            <div class="tab-pane fade active show" id="patient" role="tabpanel" aria-labelledby="tab-patient">
+              <div class="card">
+                <div class="card-body">
+                  <div class="col-12 results">
+                        <div class="pt-4 border-bottom">
+                          <a class="d-block h4 mb-0" href="#">bootstrapdash</a>
+                          <a class="page-url text-primary" href="#">https://www.bootstrapdash.com/</a>
+                          <p class="page-description mt-1 w-75 text-muted">bootstrapdash gives you the most beautiful, free and premium bootstrap admin dashboard templates and control panel themes based on Bootstrap 3 and 4.</p>
+                        </div>
+                        <div class="pt-4 border-bottom">
+                          <a class="d-block h4 mb-0" href="#">bootstrapdash</a>
+                          <a class="page-url text-primary" href="#">https://www.bootstrapdash.com/</a>
+                          <p class="page-description mt-1 w-75 text-muted">bootstrapdash gives you the most beautiful, free and premium bootstrap admin dashboard templates and control panel themes based on Bootstrap 3 and 4.</p>
+                        </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="bed" role="tabpanel" aria-labelledby="tab-bed">
+              <div class="card">
+                <div class="card-body">
+                  <div class="col-12 results">
+                        <div class="pt-4 border-bottom">
+                          <a class="d-block h4 mb-0" href="#">bootstrapdash</a>
+                          <a class="page-url text-primary" href="#">https://www.bootstrapdash.com/</a>
+                          <p class="page-description mt-1 w-75 text-muted">bootstrapdash gives you the most beautiful, free and premium bootstrap admin dashboard templates and control panel themes based on Bootstrap 3 and 4.</p>
+                        </div>
+                        <div class="pt-4 border-bottom">
+                          <a class="d-block h4 mb-0" href="#">bootstrapdash</a>
+                          <a class="page-url text-primary" href="#">https://www.bootstrapdash.com/</a>
+                          <p class="page-description mt-1 w-75 text-muted">bootstrapdash gives you the most beautiful, free and premium bootstrap admin dashboard templates and control panel themes based on Bootstrap 3 and 4.</p>
+                        </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="staff" role="tabpanel" aria-labelledby="tab-staff">
+              <div class="card">
+                <div class="card-body">
+                  <div class="col-12 results">
+                        <div class="pt-4 border-bottom">
+                          <a class="d-block h4 mb-0" href="#">bootstrapdash</a>
+                          <a class="page-url text-primary" href="#">https://www.bootstrapdash.com/</a>
+                          <p class="page-description mt-1 w-75 text-muted">bootstrapdash gives you the most beautiful, free and premium bootstrap admin dashboard templates and control panel themes based on Bootstrap 3 and 4.</p>
+                        </div>
+                        <div class="pt-4 border-bottom">
+                          <a class="d-block h4 mb-0" href="#">bootstrapdash</a>
+                          <a class="page-url text-primary" href="#">https://www.bootstrapdash.com/</a>
+                          <p class="page-description mt-1 w-75 text-muted">bootstrapdash gives you the most beautiful, free and premium bootstrap admin dashboard templates and control panel themes based on Bootstrap 3 and 4.</p>
+                        </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </div>
+</div>
+<script src="{% static 'vendors/datatables.net/jquery.dataTables.js' %}"></script>
+<script src="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
+<script src="{% static 'vendors/datatables.net-fixedcolumns/dataTables.fixedColumns.min.js' %}"></script>
+<script src="{% static 'js/shared/data-table.js' %}"></script>
+{% endblock %}
