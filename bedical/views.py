@@ -44,16 +44,29 @@ def staffprofile(request, bid, *args, **kwargs):
     return render(request, 'staff.html', context)
 
 
-def registrationpage(request, *args, **kwargs):
-    return render(request, 'registration.html', {})
+def admissionpage(request, *args, **kwargs):
+    form = BedBookingForm()
+    if request.method == 'POST':
+        form = BedBookingForm(request.POST)
+        print(request.POST)
+        if form.is_valid():
+            print(request.POST)
+            form.save()
+
+    bb = BedicalBedbooking.objects.order_by('-admissiondate').all()
+    context = {
+        'bedbook': bb,
+        'form': form,
+    }
+    return render(request, 'admission.html', context)
 
 
 def patientpage(request, *args, **kwargs):
     return render(request, 'patients.html', {})
 
 
-def staffpage(request, *args, **kwargs):
-    return render(request, 'staffs.html', {})
+def dischargepage(request, *args, **kwargs):
+    return render(request, 'discharge.html', {})
 
 
 def dashboardpage(request, *args, **kwargs):
@@ -77,22 +90,14 @@ def profilepage(request, *args, **kwargs):
     getgroup = list(request.user.groups.values_list('name', flat=True))
     if 'Nurse' in getgroup:
         bn = BedicalNurse.objects.select_related().filter(nursefirstname=request.user.first_name, nurselastname=request.user.last_name)[0]
-        today_min = datetime.datetime.combine(datetime.datetime(2019, 9, 17), datetime.time.min)
-        today_max = datetime.datetime.combine(datetime.datetime(2020, 5, 17), datetime.time.min)
-        #today_min = datetime.datetime.combine(datetime.date.today(), datetime.time.min)
-        #today_max = datetime.datetime.combine(datetime.date.today(), datetime.time.max)
-        bmdata = BedicalBedmanagement.objects.filter(department=bn.department, admissiondate__range=(today_min, today_max))
+        bmdata = BedicalBedmanagement.objects.filter(department=bn.department, bedstatus='Occupied')
         context = {
             'admission_list': bmdata,
             'bio': {'lastname': bn.nurselastname, 'firstname': bn.nursefirstname, 'contact': bn.contact, 'department': bn.department, 'gender': bn.gender},
         }
     elif 'Doctor' in getgroup:
         bd = BedicalDoctor.objects.select_related().filter(doctorfirstname=request.user.first_name, doctorlastname=request.user.last_name)[0]
-        today_min = datetime.datetime.combine(datetime.datetime(2019, 9, 17), datetime.time.min)
-        today_max = datetime.datetime.combine(datetime.datetime(2020, 5, 17), datetime.time.min)
-        # today_min = datetime.datetime.combine(datetime.date.today(), datetime.time.min)
-        # today_max = datetime.datetime.combine(datetime.date.today(), datetime.time.max)
-        bmdata = BedicalBedmanagement.objects.filter(department=bd.doctorid, admissiondate__range=(today_min, today_max))
+        bmdata = BedicalBedmanagement.objects.filter(doctorid=bd.doctorid, bedstatus='Occupied')
         context = {
             'admission_list': bmdata,
             'bio': {'lastname': bd.doctorlastname, 'firstname': bd.doctorfirstname, 'contact': bd.contact,

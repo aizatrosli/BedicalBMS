@@ -86,6 +86,9 @@ class BedicalBed(models.Model):
     department = models.CharField(max_length=20, blank=True, null=True)
     distancetonursestation = models.IntegerField(blank=True, null=True)
 
+    def __str__(self):
+        return f'{self.bedno}'
+
     class Meta:
         managed = False
         db_table = 'bedical_bed'
@@ -93,13 +96,13 @@ class BedicalBed(models.Model):
 
 class BedicalBedbooking(models.Model):
     bookingid = models.UUIDField(primary_key=True)
-    patientid = models.UUIDField()
-    diagnosisid = models.UUIDField()
+    patientid = models.ForeignKey('BedicalPatient', models.DO_NOTHING, db_column='patientid')
+    diagnosisid = models.ForeignKey('BedicalDiagnosis', models.DO_NOTHING, db_column='diagnosisid')
     admissiondate = models.DateField()
     equipment = models.TextField(blank=True, null=True)  # This field type is a guess.
     roomtype = models.CharField(max_length=20, blank=True, null=True)
-    bedid = models.UUIDField(blank=True, null=True)
-    doctorid = models.UUIDField(blank=True, null=True)
+    bedid = models.ForeignKey(BedicalBed, models.DO_NOTHING, db_column='bedid', blank=True, null=True)
+    doctorid = models.ForeignKey('BedicalDoctor', models.DO_NOTHING, db_column='doctorid', blank=True, null=True)
     department = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -138,6 +141,9 @@ class BedicalDiagnosis(models.Model):
     surgery = models.BooleanField(blank=True, null=True)
     operationroom = models.CharField(max_length=50, blank=True, null=True)
     department = models.CharField(max_length=50, blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.icd10cmcode}'
 
     class Meta:
         managed = False
@@ -192,6 +198,9 @@ class BedicalDoctor(models.Model):
     contact = models.CharField(max_length=128)
     department = models.CharField(max_length=255)
 
+    def __str__(self):
+        return f'{self.doctorlastname}, {self.doctorfirstname}'
+
     class Meta:
         managed = False
         db_table = 'bedical_doctor'
@@ -204,6 +213,9 @@ class BedicalNurse(models.Model):
     gender = models.CharField(max_length=1)
     contact = models.CharField(max_length=128)
     department = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f'{self.nurselastname}, {self.nursefirstname}'
 
     class Meta:
         managed = False
@@ -233,6 +245,9 @@ class BedicalPatient(models.Model):
     location = models.CharField(max_length=255)
     emergencycontact = models.CharField(max_length=128)
     bloodgroup = models.CharField(max_length=2, blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.patientlastname}, {self.patientfirstname}'
 
     class Meta:
         managed = False
