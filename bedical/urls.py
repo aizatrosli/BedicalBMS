@@ -15,6 +15,9 @@ router.register('payment', views.paymentView)
 
 urlpatterns = [
     url('^api/dashboard/data$', views.DashboardData.as_view()),
+    url('^api/search/patient$', views.patientSearchiew.as_view()),
+    url('^api/search/doctor$', views.doctorSearchiew.as_view()),
+    url(r'^autocomplete/bm/$', views.BedBMAutocomplete.as_view(), name='bm-autocomplete'),
     url('api/', include(router.urls)),
 
 ]

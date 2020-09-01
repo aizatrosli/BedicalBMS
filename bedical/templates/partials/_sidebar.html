@@ -34,38 +34,22 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-        <i class="menu-icon typcn typcn-coffee"></i>
-        <span class="menu-title">Patient</span>
-        <i class="menu-arrow"></i>
+      <a class="nav-link" href="{% url 'appointment' %}">
+        <i class="menu-icon typcn typcn-document-text"></i>
+        <span class="menu-title">Appointment</span>
       </a>
-      <div class="collapse" id="ui-basic">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'admission' %}">Admission</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'appointment' %}">Appointment</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'patient' %}">Patient Details</a>
-          </li>
-        </ul>
-      </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-        <i class="menu-icon typcn typcn-document-add"></i>
-        <span class="menu-title">Staff</span>
-        <i class="menu-arrow"></i>
+      <a class="nav-link" href="{% url 'admission' %}">
+        <i class="menu-icon typcn typcn-document-text"></i>
+        <span class="menu-title">Admission</span>
       </a>
-      <div class="collapse" id="auth">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'discharge' %}">Discharge</a>
-          </li>
-        </ul>
-      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'discharge' %}">
+        <i class="menu-icon typcn typcn-document-text"></i>
+        <span class="menu-title">Discharge</span>
+      </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="{% url 'dash' %}">
