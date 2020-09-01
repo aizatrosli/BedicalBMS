@@ -13,3 +13,7 @@ def search_url(value, field_name, urlencode=None):
 
     return url
 
+@register.filter
+def summary_data(mapping, key):
+    return
+

@@ -46,7 +46,7 @@
                 <div class="form-group row">
                   <label class="col-sm-3 col-form-label">Admission Date</label>
                   <div class="col-sm-9">
-                    {{form.admissiondate}}
+                    <input class="form-control" type="date" value="2011-08-19" id="admissiondate">
                   </div>
                 </div>
               </div>
@@ -184,6 +184,9 @@
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Booking List</h4>
+              {% if request.GET.urlencode %}
+                <h3 id="searchtrigger">Search results for: {{ request.GET.urlencode }}</h3>
+              {% endif %}
               <div class="table-responsive">
                 <table id="tablebooking" class="table table-bordered">
                   <thead>
@@ -202,11 +205,11 @@
                   <tbody>
                   {% for obj in bedbook%}
                     <tr>
-                      <td>{{obj.bookingid}}</td>
+                      <td>{{obj.pk}}</td>
                       <td><a href="" class="patientid" data-toggle="modal" data-target="#exampleModal" data-whatever="{{obj.patientid.patientid}},">{{obj.patientid.patientlastname}}, {{obj.patientid.patientfirstname}}</a></td>
                       <td>{{obj.diagnosisid.icd10cmcode}}</td>
                       <td>{{obj.admissiondate}}</td>
-                      <td>{{obj.roomtype}}</td>
+                      <td>{{obj.bedid.roomtype}}</td>
                       <td>{{obj.bedid.bedno}}</td>
                       <td>{{obj.doctorid.doctorlastname}}, {{obj.doctorid.doctorfirstname}}</td>
                       <td>{{obj.department}}</td>

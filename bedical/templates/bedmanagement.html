@@ -185,6 +185,9 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Management List</h4>
+                {% if request.GET.urlencode %}
+                <h3 id="searchtrigger">Search results for: {{ request.GET.urlencode }}</h3>
+              {% endif %}
                 <div class="table-responsive">
                   <table id="tablebooking" class="table table-bordered">
                     <thead>
@@ -204,7 +207,7 @@
                     {% for obj in bedmanage%}
                       <tr>
                         <td>{{obj.managementid}}</td>
-                        <td><a href="" class="patientid" data-toggle="modal" data-target="#exampleModal" data-whatever="{{obj.patientid.patientid}},">{{obj.patientid.patientlastname}}, {{obj.patientid.patientfirstname}}</a></td>
+                        <td><a href="#" class="patientid" data-target="#exampleModal" data-whatever="{{obj.patientid.patientid}},">{{obj.patientid.patientlastname}}, {{obj.patientid.patientfirstname}}</a></td>
                         <td>{{obj.diagnosisid.icd10cmcode}}</td>
                         <td>{{obj.admissiondate}}</td>
                         {% if "Doctor approved" == obj.bedstatus %}
@@ -214,9 +217,9 @@
                         {% elif "Occupied" == obj.bedstatus %}
                           <td><label class="badge badge-inverse-danger">{{obj.bedstatus}}</label></td>
                         {% elif "Financial cleared" == obj.bedstatus %}
-                          <td><label class="badge badge-inverse-success">{{obj.bedstatus}}</label></td>
+                          <td><label class="badge badge-inverse-primary">{{obj.bedstatus}}</label></td>
                         {% elif "Cleaned" == obj.bedstatus %}
-                          <td><label class="badge badge-inverse-light">{{obj.bedstatus}}</label></td>
+                          <td><label class="badge badge-inverse-success">{{obj.bedstatus}}</label></td>
                         {% elif "Discharged" == obj.bedstatus %}
                           <td><label class="badge badge-inverse-dark">{{obj.bedstatus}}</label></td>
                         {% endif %}
@@ -310,6 +313,7 @@
     $('#blood').text(patient.bloodgroup);
     $('#contact').text(patient.contact);
     $('#emergency').text(patient.emergencycontact);
+    $('#exampleModal').modal('show');
     };
   </script>
 

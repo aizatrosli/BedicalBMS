@@ -99,7 +99,7 @@ WSGI_APPLICATION = 'bedicalBMS.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'paulinedbv2',
+        'NAME': 'paulinedbv3',
         'USER': 'bedicaladmin',
         'PASSWORD': 'bedicalroot',
 

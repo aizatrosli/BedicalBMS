@@ -1,4 +1,5 @@
 import datetime, uuid
+import pandas as pd
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .serializers import *
@@ -9,7 +10,6 @@ from .forms import *
 from rest_framework import viewsets, filters
 from rest_framework.views import APIView, View
 from rest_framework.response import Response
-from rest_framework import authentication, permissions
 from django.contrib.auth import authenticate, login, logout
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from drf_multiple_model.views import ObjectMultipleModelAPIView
@@ -32,14 +32,11 @@ class BedBMAutocomplete(autocomplete.Select2QuerySetView):
 @login_required(login_url='/login/')
 def mainpage(request, *args, **kwargs):
     context = {
-        'titlec1': 'Total Patients',
-        'titlec2': 'Clearance Time by Insurance Company',
-        'titlec3': 'Outpatient to Inpatient Conversion',
-        'titlec4': 'Cases by Insurance Company',
-        'titlec5': 'Cases by Division',
-        'titlec6': 'Bed Vacancy by date',
+        'tpd': msql(rawsqlstr['Total Patient Discharged']).to_numpy().ravel().item(),
+        'tpa': msql(rawsqlstr['Total Patient Admitted']).to_numpy().ravel().item(),
+        'ab': msql(rawsqlstr['Available Beds']).to_numpy().ravel().item(),
+        'pie': msql(rawsqlstr['Patient in Emergency']).to_numpy().ravel().item(),
     }
-    print(dir(request.user))
     if request.user.is_anonymous:
         return redirect('login')
     else:
@@ -101,7 +98,7 @@ def appointmentpage(request, *args, **kwargs):
             print(request.POST)
             form.save()
 
-    bb = BedbookingFilter(request.GET, queryset=BedicalBedmanagement.objects.order_by('-admissiondate').all())
+    bb = BedbookingFilter(request.GET, queryset=BedicalBedbooking.objects.order_by('-admissiondate').all())
     page = request.GET.get('page', 1)
     paginator = Paginator(bb.qs, 10)
     try:
@@ -127,14 +124,8 @@ def dischargepage(request, *args, **kwargs):
 
 @login_required(login_url='/login/')
 def dashboardpage(request, *args, **kwargs):
-    context = {
-        'titlec1': 'Total Patients',
-        'titlec2': 'Clearance Time by Insurance Company',
-        'titlec3': 'Outpatient to Inpatient Conversion',
-        'titlec4': 'Cases by Insurance Company',
-        'titlec5': 'Cases by Division',
-        'titlec6': 'Bed Vacancy by date',
-    }
+    context = {}
+
     return render(request, 'dash.html', context)
 
 
@@ -189,10 +180,9 @@ class DashboardData(APIView):
     permission_classes = []#[permissions.IsAdminUser]
 
     def get(self, request, format=None):
-        data = {
-            'TotalMalePatient' : 100,
-            'TotalFemalePatient' : 200,
-        }
+        data = {'charts': {}}
+        for i, (key, val) in enumerate(rawsqlstr.items()):
+            data['charts'][key] = msql(val).to_dict('list')
         return Response(data)
 
 
