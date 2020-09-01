@@ -1,0 +1,316 @@
+  {% extends 'index.html' %}
+  {% load customtag %}
+  {% load static %}
+  {% block content %}
+
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Bed Management</h4>
+            <ul class="nav nav-tabs tab-solid tab-solid-primary" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="tab-new" data-toggle="tab" href="#new-patient" role="tab" aria-controls="new-patient" aria-selected="false">Add New Entry</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="tab-emergency" data-toggle="tab" href="#new-emergency" role="tab" aria-controls="new-emergency" aria-selected="false">Search Filter</a>
+              </li>
+            </ul>
+            <div class="tab-content tab-content-solid">
+              <div class="tab-pane fade active show" id="new-patient" role="tabpanel" aria-labelledby="tab-new">
+                <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Admission Entry</h4>
+            <form method="POST" class="form-sample">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Patient Name</label>
+                   <div class="col-sm-9">
+                     {{form.patientid}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Diagnosis ID</label>
+                   <div class="col-sm-9">
+                     {{form.diagnosisid}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Admission Date</label>
+                    <div class="col-sm-9">
+                      {{form.admissiondate}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Bed Status</label>
+                   <div class="col-sm-9">
+                     {{form.bedstatus}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Bed No.</label>
+                    <div class="col-sm-9">
+                     {{form.bedid}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Doctor</label>
+                    <div class="col-sm-9">
+                      {{form.doctorid}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+              <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Department</label>
+                    <div class="col-sm-9">
+                      {{form.department}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-12">
+              <button type="submit" class="btn btn-success mr-2" style="float: right;">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+              </div>
+              <div class="tab-pane fade" id="new-emergency" role="tabpanel" aria-labelledby="tab-emergency">
+                <div class="card">
+                    <div class="card-body">
+            <h4 class="card-title">Search Filter</h4>
+            <form method="GET" class="form-sample">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Patient Name</label>
+                   <div class="col-sm-9">
+                     {{filterbm.form.patientid}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Diagnosis ID</label>
+                   <div class="col-sm-9">
+                     {{filterbm.form.diagnosisid}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Admission Date</label>
+                    <div class="col-sm-9">
+                      {{filterbm.form.admissiondate}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Bed Status</label>
+                   <div class="col-sm-9">
+                     {{filterbm.form.bedstatus}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Bed No.</label>
+                    <div class="col-sm-9">
+                     {{filterbm.form.bedid}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Doctor</label>
+                    <div class="col-sm-9">
+                      {{filterbm.form.doctorid}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+              <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Department</label>
+                    <div class="col-sm-9">
+                      {{filterbm.form.department}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-12">
+              <button type="submit" class="btn btn-success mr-2" style="float: right;">Search</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 grid-margin">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Management List</h4>
+                <div class="table-responsive">
+                  <table id="tablebooking" class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Patient</th>
+                        <th>Diagnosis</th>
+                        <th>Admission Date</th>
+                        <th>Bed Status</th>
+                        <th>Bed No.</th>
+                        <th>Doctor</th>
+                        <th>Department</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for obj in bedmanage%}
+                      <tr>
+                        <td>{{obj.managementid}}</td>
+                        <td><a href="" class="patientid" data-toggle="modal" data-target="#exampleModal" data-whatever="{{obj.patientid.patientid}},">{{obj.patientid.patientlastname}}, {{obj.patientid.patientfirstname}}</a></td>
+                        <td>{{obj.diagnosisid.icd10cmcode}}</td>
+                        <td>{{obj.admissiondate}}</td>
+                        {% if "Doctor approved" == obj.bedstatus %}
+                          <td><label class="badge badge-inverse-info">{{obj.bedstatus}}</label></td>
+                        {% elif "Start discharge" == obj.bedstatus %}
+                          <td><label class="badge badge-inverse-warning">{{obj.bedstatus}}</label></td>
+                        {% elif "Occupied" == obj.bedstatus %}
+                          <td><label class="badge badge-inverse-danger">{{obj.bedstatus}}</label></td>
+                        {% elif "Financial cleared" == obj.bedstatus %}
+                          <td><label class="badge badge-inverse-success">{{obj.bedstatus}}</label></td>
+                        {% elif "Cleaned" == obj.bedstatus %}
+                          <td><label class="badge badge-inverse-light">{{obj.bedstatus}}</label></td>
+                        {% elif "Discharged" == obj.bedstatus %}
+                          <td><label class="badge badge-inverse-dark">{{obj.bedstatus}}</label></td>
+                        {% endif %}
+                        <td>{{obj.bedid.bedno}}</td>
+                        <td>{{obj.doctorid.doctorlastname}}, {{obj.doctorid.doctorfirstname}}</td>
+                        <td>{{obj.department}}</td>
+                        <td>
+                          <button class="btn btn-outline-primary">Details</button>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                  {% if bedmanage.has_other_pages %}
+                  <ul class="pagination">
+                    {% if bedmanage.has_previous %}
+                    <li><a href="{% search_url 1 'page' request.GET.urlencode %}">&nbsp;&nbsp;First&nbsp;&nbsp;</a></li>
+                    <li><a href="{% search_url bedmanage.previous_page_number 'page' request.GET.urlencode %}">&nbsp;&nbsp;Previous&nbsp;&nbsp;</a></li>
+
+                    {% endif %}
+                    <span class="current">
+                      Page of {{bedmanage.number}} of {{bedmanage.paginator.num_pages}}
+                    </span>
+                    {% if bedmanage.has_next %}
+                    <li><a href="{% search_url bedmanage.next_page_number 'page' request.GET.urlencode %}">&nbsp;&nbsp;Next&nbsp;&nbsp;</a></li>
+                    <li><a href="{% search_url bedmanage.paginator.num_pages 'page' request.GET.urlencode %}">&nbsp;&nbsp;Last&nbsp;&nbsp;</a></li>
+                    {% endif %}
+                  </ul>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLabel">Patient Details</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <div class="card">
+          <div class="card-body">
+            <h3 id="patient-name">LastName, FirstName</h3>
+            <h4 id="gender">M/F</h4>
+            <h3 id="dob">99/99/9999</h3>
+            <h3 id="blood">AB/0/A/B</h3>
+            <h3 id="contact">099999999</h3>
+            <h3 id="emergency">09999999</h3>
+          </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+
+        </div>
+      </div>
+    </div>
+  </div>
+      </div>
+
+  <script type='text/javascript' >
+    var otherval = $(document).ready(function() {
+      var dataset = null;
+          $(".patientid").on("click", function () {
+            var pid = $(this).data('whatever');
+            console.log(pid);
+            var endpoint = "/api/search/patient?id="+ String(pid).replace(',','')
+            $.ajax({
+              method: "GET",
+              url: endpoint,
+              success: function (data) {
+                console.log(data)
+                dataset = data;
+                openModal(dataset.patient[0]);
+                dataset.patient.forEach(function(obj) { console.log(obj); });
+              },
+              error: function (error_data) {
+                console.log("error")
+                console.log(error_data)
+              }
+            });
+          });
+    });
+    function openModal(patient){
+    $('#patient-name').text(patient.patientlastname+", "+patient.patientfirstname);
+    $('#gender').text(patient.gender);
+    $('#dob').text(patient.dob);
+    $('#blood').text(patient.bloodgroup);
+    $('#contact').text(patient.contact);
+    $('#emergency').text(patient.emergencycontact);
+    };
+  </script>
+
+  {% endblock %}
