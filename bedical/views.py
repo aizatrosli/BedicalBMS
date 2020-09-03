@@ -31,16 +31,7 @@ class BedBMAutocomplete(autocomplete.Select2QuerySetView):
 
 @login_required(login_url='/login/')
 def mainpage(request, *args, **kwargs):
-    context = {
-        'tpd': msql(rawsqlstr['Total Patient Discharged']).to_numpy().ravel().item(),
-        'tpa': msql(rawsqlstr['Total Patient Admitted']).to_numpy().ravel().item(),
-        'ab': msql(rawsqlstr['Available Beds']).to_numpy().ravel().item(),
-        'pie': msql(rawsqlstr['Patient in Emergency']).to_numpy().ravel().item(),
-    }
-    if request.user.is_anonymous:
-        return redirect('login')
-    else:
-        return render(request, 'home.html', context)
+    return redirect('profile')
 
 @login_required(login_url='/login/')
 def searchpage(request, *args, **kwargs):
@@ -120,11 +111,29 @@ def patientpage(request, *args, **kwargs):
 
 @login_required(login_url='/login/')
 def dischargepage(request, *args, **kwargs):
-    return render(request, 'discharge.html', {})
+    bbm = BedmanagementFilter(request.GET, queryset=BedicalBedmanagement.objects.order_by('-admissiondate').all())
+    page = request.GET.get('page', 1)
+    paginator = Paginator(bbm.qs, 10)
+    try:
+        bbms = paginator.page(page)
+    except PageNotAnInteger:
+        bbms = paginator.page(1)
+    except EmptyPage:
+        bbms = paginator.page(paginator.num_pages)
+    context = {
+        'filterbm': bbm,
+        'bedmanage': bbms,
+    }
+    return render(request, 'discharge.html', context)
 
 @login_required(login_url='/login/')
 def dashboardpage(request, *args, **kwargs):
-    context = {}
+    context = {
+        'tpd': msql(rawsqlstr['Total Patient Discharged']).to_numpy().ravel().item(),
+        'tpa': msql(rawsqlstr['Total Patient Admitted']).to_numpy().ravel().item(),
+        'ab': msql(rawsqlstr['Available Beds']).to_numpy().ravel().item(),
+        'pie': msql(rawsqlstr['Patient in Emergency']).to_numpy().ravel().item(),
+    }
 
     return render(request, 'dash.html', context)
 

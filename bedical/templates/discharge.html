@@ -1,5 +1,5 @@
 {% extends 'index.html' %}
-
+{% load customtag %}
 {% load static %}
 {% block content %}
 
@@ -10,7 +10,7 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Discharge</h4>
-          <ul class="nav nav-tabs tab-solid tab-solid-danger" role="tablist">
+          <ul class="nav nav-tabs tab-solid tab-solid-primary" role="tablist">
             <li class="nav-item">
               <a class="nav-link active" id="tab-new" data-toggle="tab" href="#new-patient" role="tab" aria-controls="new-patient" aria-selected="false">Search Filter</a>
             </li>
@@ -21,139 +21,81 @@
           <div class="tab-content tab-content-solid">
             <div class="tab-pane fade active show" id="new-patient" role="tabpanel" aria-labelledby="tab-new">
               <div class="card">
-        <div class="card-body">
-          <h4 class="card-title"></h4>
-          <form class="form-sample">
-            <p4 class="card-description"> Personal info </p4>
-            <div class="row">
+                    <div class="card-body">
+            <h4 class="card-title">Search Filter</h4>
+            <form method="GET" class="form-sample">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Patient Name</label>
+                   <div class="col-sm-9">
+                     {{filterbm.form.patientid}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Diagnosis ID</label>
+                   <div class="col-sm-9">
+                     {{filterbm.form.diagnosisid}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Admission Date</label>
+                    <div class="col-sm-9">
+                      {{filterbm.form.admissiondate}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Bed Status</label>
+                   <div class="col-sm-9">
+                     {{filterbm.form.bedstatus}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Bed No.</label>
+                    <div class="col-sm-9">
+                     {{filterbm.form.bedid}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Doctor</label>
+                    <div class="col-sm-9">
+                      {{filterbm.form.doctorid}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
               <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Patient Name</label>
-                 <div class="col-sm-9">
-                    <select class="form-control">
-                      <option>Male</option>
-                      <option>Female</option>
-                    </select>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Department</label>
+                    <div class="col-sm-9">
+                      {{filterbm.form.department}}
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Doctor Name</label>
-                 <div class="col-sm-9">
-                    <select class="form-control">
-                      <option>Male</option>
-                      <option>Female</option>
-                    </select>
-                  </div>
+              <div class="row">
+                  <div class="col-md-12">
+              <button type="submit" class="btn btn-success mr-2" style="float: right;">Search</button>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Division</label>
-                  <div class="col-sm-9">
-                    <select class="form-control">
-                      <option>Male</option>
-                      <option>Female</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Patient Status</label>
-                 <div class="col-sm-9">
-                    <select class="form-control">
-                      <option>Male</option>
-                      <option>Female</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <p4 class="card-description"> Operation </p4>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Operation</label>
-                  <div class="col-sm-9">
-                    <select class="form-control">
-                      <option>Category1</option>
-                      <option>Category2</option>
-                      <option>Category3</option>
-                      <option>Category4</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Operation Time</label>
-                  <div class="col-sm-9">
-                    <select class="form-control">
-                      <option>Category1</option>
-                      <option>Category2</option>
-                      <option>Category3</option>
-                      <option>Category4</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-            <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Operation Date</label>
-                  <div class="col-sm-9">
-                    <input class="form-control" placeholder="dd/mm/yyyy" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <p4 class="card-description"> Bed </p4>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Bed Category</label>
-                  <div class="col-sm-9">
-                    <select class="form-control">
-                      <option>Category1</option>
-                      <option>Category2</option>
-                      <option>Category3</option>
-                      <option>Category4</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Expected Days of Stay</label>
-                  <div class="col-sm-9">
-                    <input class="form-control" placeholder="dd/mm/yyyy" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Bed Number</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" />
-                  </div>
-                </div>
-              </div>
-              </div>
-            <div class="row">
-                <div class="col-md-12">
-            <button type="submit" class="btn btn-success mr-2" style="float: right;">Submit</button>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
-      </div>
             </div>
             <div class="tab-pane fade" id="new-emergency" role="tabpanel" aria-labelledby="tab-emergency">
               <div class="card">
@@ -163,19 +105,23 @@
         <div class="stepwizardcustom-row setup-panel">
             <div class="stepwizardcustom-step col-xs-3">
                 <a href="#step-1" type="button" class="btn btn-success stepwizardcustombtn-circle">1</a>
-                <p><small>Shipper</small></p>
+                <p><small>Occupied</small></p>
             </div>
             <div class="stepwizardcustom-step col-xs-3">
                 <a href="#step-2" type="button" class="btn btn-default stepwizardcustombtn-circle" disabled="disabled">2</a>
-                <p><small>Destination</small></p>
+                <p><small>Start Discharge</small></p>
             </div>
             <div class="stepwizardcustom-step col-xs-3">
                 <a href="#step-3" type="button" class="btn btn-default stepwizardcustombtn-circle" disabled="disabled">3</a>
-                <p><small>Schedule</small></p>
+                <p><small>Doctor Approved</small></p>
             </div>
             <div class="stepwizardcustom-step col-xs-3">
                 <a href="#step-4" type="button" class="btn btn-default stepwizardcustombtn-circle" disabled="disabled">4</a>
-                <p><small>Cargo</small></p>
+                <p><small>Financial Cleared</small></p>
+            </div>
+            <div class="stepwizardcustom-step col-xs-3">
+                <a href="#step-4" type="button" class="btn btn-default stepwizardcustombtn-circle" disabled="disabled">4</a>
+                <p><small>Discharge</small></p>
             </div>
         </div>
     </div>
@@ -256,330 +202,107 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-12 grid-margin">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Appointment List</h4>
-              <div class="table-responsive">
-                <table id="fixed-column" class="table">
-                  <thead>
-                    <tr>
-                      <th>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input"><i class="input-helper"></i></label>
-                        </div>
-                      </th>
-                      <th>Operation Date</th>
-                      <th>Patient</th>
-                      <th>Doctor</th>
-                      <th>Bed Number</th>
-                      <th>Division</th>
-                      <th>Placeholder</th>
-                      <th>Status</th>
-                      <th>Placeholder</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input"><i class="input-helper"></i></label>
-                        </div>
-                      </td>
-                      <td>1</td>
-                      <td>2012/08/03</td>
-                      <td>Edinburgh</td>
-                      <td>New York</td>
-                      <td>$1500</td>
-                      <td>$3200</td>
-                      <td>
-                        <label class="badge badge-inverse-info">On hold</label>
-                      </td>
-                      <td>
-                        <div class="d-flex align-items-center">
-                          <img class="img-xs rounded-circle" src="{% static 'images/faces/face2.jpg' %}" alt="profile image">
-                          <div class="wrapper pl-2">
-                            <p class="mb-0 text-gray">Derrick Morton</p>
-                            <small class="mb-0 text-muted">Manager</small>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <button class="btn btn-outline-primary">View</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input"><i class="input-helper"></i></label>
-                        </div>
-                      </td>
-                      <td>2</td>
-                      <td>2015/04/01</td>
-                      <td>Doe</td>
-                      <td>Brazil</td>
-                      <td>$4500</td>
-                      <td>$7500</td>
-                      <td>
-                        <label class="badge badge-inverse-danger">Pending</label>
-                      </td>
-                      <td>
-                        <div class="d-flex align-items-center">
-                          <span class="img-xs rounded-circle bg-warning text-white text-avatar">AV</span>
-                          <div class="wrapper pl-2">
-                            <p class="mb-0 text-gray">Austin Vaughn</p>
-                            <small class="mb-0 text-muted">Manager</small>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <button class="btn btn-outline-primary">View</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input" checked><i class="input-helper"></i></label>
-                        </div>
-                      </td>
-                      <td>3</td>
-                      <td>2010/11/21</td>
-                      <td>Sam</td>
-                      <td>Tokyo</td>
-                      <td>$2100</td>
-                      <td>$6300</td>
-                      <td>
-                        <label class="badge badge-inverse-success">Closed</label>
-                      </td>
-                      <td>
-                        <div class="d-flex align-items-center">
-                          <img class="img-xs rounded-circle" src="{% static 'images/faces/face4.jpg' %}" alt="profile image">
-                          <div class="wrapper pl-2">
-                            <p class="mb-0 text-gray">Iva Craig</p>
-                            <small class="mb-0 text-muted">Manager</small>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <button class="btn btn-outline-primary">View</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input" checked><i class="input-helper"></i></label>
-                        </div>
-                      </td>
-                      <td>4</td>
-                      <td>2016/01/12</td>
-                      <td>Sam</td>
-                      <td>Tokyo</td>
-                      <td>$2100</td>
-                      <td>$6300</td>
-                      <td>
-                        <label class="badge badge-inverse-success">Closed</label>
-                      </td>
-                      <td>
-                        <div class="d-flex align-items-center">
-                          <img class="img-xs rounded-circle" src="{% static 'images/faces/face5.jpg' %}" alt="profile image">
-                          <div class="wrapper pl-2">
-                            <p class="mb-0 text-gray">Della Yates</p>
-                            <small class="mb-0 text-muted">Manager</small>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <button class="btn btn-outline-primary">View</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input"><i class="input-helper"></i></label>
-                        </div>
-                      </td>
-                      <td>5</td>
-                      <td>2017/12/28</td>
-                      <td>Sam</td>
-                      <td>Tokyo</td>
-                      <td>$2100</td>
-                      <td>$6300</td>
-                      <td>
-                        <label class="badge badge-inverse-success">Closed</label>
-                      </td>
-                      <td>
-                        <div class="d-flex align-items-center">
-                          <span class="img-xs rounded-circle bg-primary text-white text-avatar">AW</span>
-                          <div class="wrapper pl-2">
-                            <p class="mb-0 text-gray">Alexander Wallace</p>
-                            <small class="mb-0 text-muted">Manager</small>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <button class="btn btn-outline-primary">View</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input"><i class="input-helper"></i></label>
-                        </div>
-                      </td>
-                      <td>6</td>
-                      <td>2000/10/30</td>
-                      <td>Sam</td>
-                      <td>Tokyo</td>
-                      <td>$2100</td>
-                      <td>$6300</td>
-                      <td>
-                        <label class="badge badge-inverse-info">On-hold</label>
-                      </td>
-                      <td>
-                        <div class="d-flex align-items-center">
-                          <img class="img-xs rounded-circle" src="{% static 'images/faces/face7.jpg' %}" alt="profile image">
-                          <div class="wrapper pl-2">
-                            <p class="mb-0 text-gray">Helen Holt</p>
-                            <small class="mb-0 text-muted">Manager</small>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <button class="btn btn-outline-primary">View</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input"><i class="input-helper"></i></label>
-                        </div>
-                      </td>
-                      <td>7</td>
-                      <td>2011/03/11</td>
-                      <td>Cris</td>
-                      <td>Tokyo</td>
-                      <td>$2100</td>
-                      <td>$6300</td>
-                      <td>
-                        <label class="badge badge-inverse-success">Closed</label>
-                      </td>
-                      <td>
-                        <div class="d-flex align-items-center">
-                          <span class="img-xs rounded-circle bg-info text-white text-avatar">DR</span>
-                          <div class="wrapper pl-2">
-                            <p class="mb-0 text-gray">Douglas Reese</p>
-                            <small class="mb-0 text-muted">Manager</small>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <button class="btn btn-outline-primary">View</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input"><i class="input-helper"></i></label>
-                        </div>
-                      </td>
-                      <td>8</td>
-                      <td>2015/06/25</td>
-                      <td>Tim</td>
-                      <td>Italy</td>
-                      <td>$6300</td>
-                      <td>$2100</td>
-                      <td>
-                        <label class="badge badge-inverse-info">On-hold</label>
-                      </td>
-                      <td>
-                        <div class="d-flex align-items-center">
-                          <img class="img-xs rounded-circle" src="{% static 'images/faces/face9.jpg' %}" alt="profile image">
-                          <div class="wrapper pl-2">
-                            <p class="mb-0 text-gray">Jim Jennings</p>
-                            <small class="mb-0 text-muted">Manager</small>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <button class="btn btn-outline-primary">View</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input"><i class="input-helper"></i></label>
-                        </div>
-                      </td>
-                      <td>9</td>
-                      <td>2016/11/12</td>
-                      <td>John</td>
-                      <td>Tokyo</td>
-                      <td>$2100</td>
-                      <td>$6300</td>
-                      <td>
-                        <label class="badge badge-inverse-success">Closed</label>
-                      </td>
-                      <td>
-                        <div class="d-flex align-items-center">
-                          <span class="img-xs rounded-circle bg-primary text-white text-avatar">MH</span>
-                          <div class="wrapper pl-2">
-                            <p class="mb-0 text-gray">Maude Hawkins</p>
-                            <small class="mb-0 text-muted">Manager</small>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <button class="btn btn-outline-primary">View</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input"><i class="input-helper"></i></label>
-                        </div>
-                      </td>
-                      <td>10</td>
-                      <td>2003/12/26</td>
-                      <td>Tom</td>
-                      <td>Germany</td>
-                      <td>$1100</td>
-                      <td>$2300</td>
-                      <td>
-                        <label class="badge badge-inverse-danger">Pending</label>
-                      </td>
-                      <td>
-                        <div class="d-flex align-items-center">
-                          <img class="img-xs rounded-circle" src="{% static 'images/faces/face11.jpg' %}" alt="profile image">
-                          <div class="wrapper pl-2">
-                            <p class="mb-0 text-gray">Harold Perez</p>
-                            <small class="mb-0 text-muted">Manager</small>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <button class="btn btn-outline-primary">View</button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+      <div class="row">
+      <div class="col-md-12 grid-margin">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Management List</h4>
+                {% if request.GET.urlencode %}
+                <h3 id="searchtrigger">Search results for: {{ request.GET.urlencode }}</h3>
+              {% endif %}
+                <div class="table-responsive">
+                  <table id="tablebooking" class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Patient</th>
+                        <th>Diagnosis</th>
+                        <th>Admission Date</th>
+                        <th>Bed Status</th>
+                        <th>Bed No.</th>
+                        <th>Doctor</th>
+                        <th>Department</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for obj in bedmanage%}
+                      <tr>
+                        <td>{{obj.managementid}}</td>
+                        <td><a class="patientid" data-target="#exampleModal" data-whatever="{{obj.patientid.patientid}}">{{obj.patientid.patientlastname}}, {{obj.patientid.patientfirstname}}</a></td>
+                        <td>{{obj.diagnosisid.icd10cmcode}}</td>
+                        <td>{{obj.admissiondate}}</td>
+                        {% if "Doctor approved" == obj.bedstatus %}
+                          <td><label class="badge badge-inverse-info">{{obj.bedstatus}}</label></td>
+                        {% elif "Start discharge" == obj.bedstatus %}
+                          <td><label class="badge badge-inverse-warning">{{obj.bedstatus}}</label></td>
+                        {% elif "Occupied" == obj.bedstatus %}
+                          <td><label class="badge badge-inverse-danger">{{obj.bedstatus}}</label></td>
+                        {% elif "Financial cleared" == obj.bedstatus %}
+                          <td><label class="badge badge-inverse-primary">{{obj.bedstatus}}</label></td>
+                        {% elif "Cleaned" == obj.bedstatus %}
+                          <td><label class="badge badge-inverse-success">{{obj.bedstatus}}</label></td>
+                        {% elif "Discharged" == obj.bedstatus %}
+                          <td><label class="badge badge-inverse-dark">{{obj.bedstatus}}</label></td>
+                        {% endif %}
+                        <td>{{obj.bedid.bedno}}</td>
+                        <td>{{obj.doctorid.doctorlastname}}, {{obj.doctorid.doctorfirstname}}</td>
+                        <td>{{obj.department}}</td>
+                        <td>
+                            <a class="btn btn-outline-primary" id="tab-button" data-toggle="tab" href="#new-emergency" role="tab" aria-controls="new-emergency" aria-selected="true">Patient Status</a>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                  {% if bedmanage.has_other_pages %}
+                  <ul class="pagination">
+                    {% if bedmanage.has_previous %}
+                    <li><a href="{% search_url 1 'page' request.GET.urlencode %}">&nbsp;&nbsp;First&nbsp;&nbsp;</a></li>
+                    <li><a href="{% search_url bedmanage.previous_page_number 'page' request.GET.urlencode %}">&nbsp;&nbsp;Previous&nbsp;&nbsp;</a></li>
+
+                    {% endif %}
+                    <span class="current">
+                      Page of {{bedmanage.number}} of {{bedmanage.paginator.num_pages}}
+                    </span>
+                    {% if bedmanage.has_next %}
+                    <li><a href="{% search_url bedmanage.next_page_number 'page' request.GET.urlencode %}">&nbsp;&nbsp;Next&nbsp;&nbsp;</a></li>
+                    <li><a href="{% search_url bedmanage.paginator.num_pages 'page' request.GET.urlencode %}">&nbsp;&nbsp;Last&nbsp;&nbsp;</a></li>
+                    {% endif %}
+                  </ul>
+                  {% endif %}
+                </div>
               </div>
             </div>
           </div>
         </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLabel">Patient Details</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <div class="card">
+          <div class="card-body">
+            <h3 id="patient-name">LastName, FirstName</h3>
+            <h4 id="gender">M/F</h4>
+            <h3 id="dob">99/99/9999</h3>
+            <h3 id="blood">AB/0/A/B</h3>
+            <h3 id="contact">099999999</h3>
+            <h3 id="emergency">09999999</h3>
+          </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+
+        </div>
       </div>
+    </div>
+  </div>
     </div>
   </div>
 </div>
@@ -627,5 +350,37 @@ $(document).ready(function () {
     $('div.setup-panel div a.btn-success').trigger('click');
 });
 </script>
-
+ <script type='text/javascript' >
+    var otherval = $(document).ready(function() {
+      var dataset = null;
+          $(".patientid").on("click", function () {
+            var pid = $(this).data('whatever');
+            console.log(pid);
+            var endpoint = "/api/search/patient?id="+ String(pid).replace(',','')
+            $.ajax({
+              method: "GET",
+              url: endpoint,
+              success: function (data) {
+                console.log(data)
+                dataset = data;
+                openModal(dataset.patient[0]);
+                dataset.patient.forEach(function(obj) { console.log(obj); });
+              },
+              error: function (error_data) {
+                console.log("error")
+                console.log(error_data)
+              }
+            });
+          });
+    });
+    function openModal(patient){
+    $('#patient-name').text(patient.patientlastname+", "+patient.patientfirstname);
+    $('#gender').text(patient.gender);
+    $('#dob').text(patient.dob);
+    $('#blood').text(patient.bloodgroup);
+    $('#contact').text(patient.contact);
+    $('#emergency').text(patient.emergencycontact);
+    $('#exampleModal').modal('show');
+    };
+  </script>
 {% endblock %}

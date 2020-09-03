@@ -6,7 +6,7 @@ import pandas as pd
 from collections import OrderedDict
 
 rawsqlstr = OrderedDict({
-    'Inpatient & Outpatient': raw_a,
+    'Inpatient & Outpatient': raw_a, #timeseries
     'Inpatient & Outpatient by Month': raw_b,
     'Average Length of Stay': raw_c,
     'Bed Availibility': raw_d,
@@ -20,12 +20,28 @@ rawsqlstr = OrderedDict({
 
 
 def msql(strdata):
+    connection.connect()
     cursor = connection.cursor()
     cursor.execute(strdata)
     row = cursor.fetchall()
     column = [x[0] for x in cursor.description]
     cursor.close()
     return pd.DataFrame(row, columns=column)
+
+
+def dfsplitter(df):
+    datecol = ""
+    variablecol = []
+    for col in df.columns.tolist():
+        if "date" in col or "month" in col or "year" in col:
+            datecol = col
+        else:
+            variablecol.append(col)
+    dfdictcol = {}
+    for col in variablecol:
+        for vcol in df[col].unique():
+            tmpdf = df[df['patienttype'] == vcol]
+
 
 
 class BedmanagementFilter(FilterSet):

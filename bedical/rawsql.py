@@ -48,8 +48,8 @@ where dischargedate is not null
 """
 
 raw_f="""
-select count(*) as total_admitted from
-(select distinct patientid from bedical_bedmanagement) as a
+select count(*) as total_admitted
+from bedical_bedmanagement
 """
 raw_g="""
 select count(*) as available_beds

@@ -214,7 +214,7 @@
                       <td>{{obj.doctorid.doctorlastname}}, {{obj.doctorid.doctorfirstname}}</td>
                       <td>{{obj.department}}</td>
                       <td>
-                        <button class="btn btn-outline-primary">Details</button>
+                        <a href="{% url 'discharge' %}" class="btn btn-outline-primary">Admission</a>
                       </td>
                     </tr>
                   {% endfor %}

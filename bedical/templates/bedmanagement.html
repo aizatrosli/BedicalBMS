@@ -1,7 +1,7 @@
-  {% extends 'index.html' %}
-  {% load customtag %}
-  {% load static %}
-  {% block content %}
+{% extends 'index.html' %}
+{% load customtag %}
+{% load static %}
+{% block content %}
 
   <div class="content-wrapper">
     <div class="row">
@@ -200,14 +200,14 @@
                         <th>Bed No.</th>
                         <th>Doctor</th>
                         <th>Department</th>
-                        <th>Actions</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
                     {% for obj in bedmanage%}
                       <tr>
                         <td>{{obj.managementid}}</td>
-                        <td><a href="#" class="patientid" data-target="#exampleModal" data-whatever="{{obj.patientid.patientid}},">{{obj.patientid.patientlastname}}, {{obj.patientid.patientfirstname}}</a></td>
+                        <td><a class="patientid" data-target="#exampleModal" data-whatever="{{obj.patientid.patientid}}">{{obj.patientid.patientlastname}}, {{obj.patientid.patientfirstname}}</a></td>
                         <td>{{obj.diagnosisid.icd10cmcode}}</td>
                         <td>{{obj.admissiondate}}</td>
                         {% if "Doctor approved" == obj.bedstatus %}
@@ -227,7 +227,7 @@
                         <td>{{obj.doctorid.doctorlastname}}, {{obj.doctorid.doctorfirstname}}</td>
                         <td>{{obj.department}}</td>
                         <td>
-                          <button class="btn btn-outline-primary">Details</button>
+                          <a class="btn btn-outline-primary patientid" href="{% url 'discharge' %}">Discharge</a>
                         </td>
                       </tr>
                     {% endfor %}

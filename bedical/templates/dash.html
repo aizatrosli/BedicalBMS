@@ -27,6 +27,56 @@
         </div>
       </div>
     </div>
+        <div class="row">
+      <div class="col-md-12 grid-margin">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-3 col-md-6">
+                <div class="d-flex">
+                  <div class="wrapper">
+                    <h4 class="mb-0 font-weight-medium text-primary">Total Patients Admitted</h4>
+                  </div>
+                  <div class="wrapper my-auto ml-auto ml-lg-4">
+                    <h2 class="mb-0 font-weight-semibold">{{ tpa }}</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6 mt-md-0 mt-4">
+                <div class="d-flex">
+                  <div class="wrapper">
+                    <h4 class="mb-0 font-weight-medium text-primary">Total Patients Discharge</h4>
+                  </div>
+                  <div class="wrapper my-auto ml-auto ml-lg-4">
+                    <h2 class="mb-0 font-weight-semibold">{{ tpd }}</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6 mt-md-0 mt-4">
+                <div class="d-flex">
+                  <div class="wrapper">
+                    <h4 class="mb-0 font-weight-medium text-primary">Patient in Emergency</h4>
+                  </div>
+                  <div class="wrapper my-auto ml-auto ml-lg-4">
+                    <h2 class="mb-0 font-weight-semibold">{{ pie }}</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6 mt-md-0 mt-4">
+                <div class="d-flex">
+                  <div class="wrapper">
+                    <h4 class="mb-0 font-weight-medium text-primary">Available Bed</h4>
+                  </div>
+                  <div class="wrapper my-auto ml-auto ml-lg-4">
+                    <h2 class="mb-0 font-weight-semibold">{{ ab }}</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-lg-4 grid-margin stretch-card">
         <div class="card">
@@ -52,17 +102,7 @@
               <h4 class="card-title mb-0">Sales Performance</h4>
               <div id="line-traffic-legend"></div>
             </div>
-            <div class="row">
-              <div class="col-md-4">
-                <h2 class="mb-0 font-weight-medium">$5,341</h2>
-                <p class="mb-5 text-muted">Sales</p>
-              </div>
-              <div class="col-md-3">
-                <h2 class="mb-0 font-weight-medium">$1,334</h2>
-                <p class="mb-5 text-muted">Profits</p>
-              </div>
-            </div>
-            <canvas id="lineChart" style="height:250px"></canvas>
+             <canvas id="lineChart" data-target="Inpatient & Outpatient" style="height:250px"></canvas>
           </div>
         </div>
       </div>
@@ -152,37 +192,55 @@
       console.log("error")
       console.log(error_data)
     }
+  });
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'line',
 
+      // The data for our dataset
+      data: {
+          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+          datasets: [{
+              label: 'My First dataset',
+              backgroundColor: 'rgb(255, 99, 132)',
+              borderColor: 'rgb(255, 99, 132)',
+              data: [0, 10, 5, 2, 20, 30, 45]
+          }]
+      },
 
-  })
-</script>
-
-<script type="text/javascript">
-var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
-
-    // The data for our dataset
-    data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [{
-            label: 'My First dataset',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45]
-        }]
-    },
-
-    // Configuration options go here
-    options: {}
-});
-$(document).ready(function() {
-  function dashgen(title, dataset) {
-    console.log(title);
-    console.log(dataset);
-  }
-});
+      // Configuration options go here
+      options: {}
+  });
+  var ltx = document.getElementById('lineChart').getContext('2d');
+  var myLineChart = new Chart(ltx, {
+      type: 'line',
+      data:  {
+          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+          datasets: [{
+              label: 'My First dataset',
+              backgroundColor: 'rgb(255, 99, 132, 0.5)',
+              borderColor: 'rgb(255, 99, 132)',
+              data: [0, 10, 5, 2, 20, 30]
+          },
+            {
+              label: 'My Second dataset',
+              backgroundColor: 'rgb(255, 220, 132, 0.5)',
+              borderColor: 'rgb(255, 200, 132)',
+              data: [40, 40, 5, 12, 20, 30, 25]
+          },
+          ]
+      },
+      options: {
+        fill: false
+      }
+  });
+  $(document).ready(function() {
+    function dashgen(title, dataset) {
+      console.log(title);
+      console.log(dataset);
+    }
+  });
 
 </script>
 
