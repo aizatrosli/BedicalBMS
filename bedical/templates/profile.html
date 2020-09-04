@@ -12,7 +12,15 @@
                 <div class="col-md-9">
                       <div class="table-responsive">
                         <div class="d-flex align-items-center mb-2 justify-content-between flex-wrap">
-                        <img class="img-bg-2 rounded-circle" src="/staticfiles/images/faces/face8.jpg" alt="profile image">
+                          {% if "Doctor" == request.user.groups.all.0|stringformat:"s" %}
+          <img class="img-xs rounded-circle" src="{% static 'images/faces/face8.jpg' %}" alt="profile image">
+          {% elif "Nurse" == request.user.groups.all.0|stringformat:"s" %}
+          <img class="img-xs rounded-circle" src="{% static 'images/faces/face10.jpg' %}" alt="profile image">
+          {% elif "Admin" == request.user.groups.all.0|stringformat:"s" %}
+          <img class="img-xs rounded-circle" src="{% static 'images/faces/face7.jpg' %}" alt="profile image">
+          {% elif "Patient" == request.user.groups.all.0|stringformat:"s" %}
+          <img class="img-xs rounded-circle" src="{% static 'images/faces/face9.jpg' %}" alt="profile image">
+          {% endif %}
                         </div>
                         <table class="table table-borderless w-100 mt-4">
                           <tbody>
