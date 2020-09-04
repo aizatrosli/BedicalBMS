@@ -1,0 +1,92 @@
+{% extends 'index.html' %}
+
+{% load static %}
+{% block content %}
+  <div class="content-wrapper">
+    <!-- Page Title Header Starts-->
+    <!-- Page Title Header Ends-->
+    <div class="row">
+      <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="p-4 border-bottom bg-light">
+            <h4 class="card-title mb-0">To list number of head nurse/nurse in the departments</h4>
+            </div>
+          <div class="card-body">
+            <div class="table-responsive">
+                  <table id="tablebooking" class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Departments</th>
+                        <th>Contact Numbers</th>
+                        <th>Working Hours</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for obj in suppdict%}
+                      <tr>
+                        <td>{{obj.DPT}}</td>
+                        <td>{{obj.CN}}</td>
+                        <td>{{obj.WH}}</td>
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script type="text/javascript">
+  var endpoint = '/api/dashboard/data'
+
+  $.ajax({
+    method: "GET",
+    url: endpoint,
+    success: function (data){
+      console.log(data)
+    },
+    error: function (error_data){
+      console.log("error")
+      console.log(error_data)
+    }
+  })
+</script>
+
+<script type="text/javascript">
+var ctx = document.getElementById('addmisionradar').getContext('2d');
+Chart.scaleService.updateScaleDefaults('linear', {
+    ticks: {
+        min: 0
+    }
+});
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'horizontalBar',
+
+    // The data for our dataset
+    data: {
+        labels: ['Cardiology', 'Orthopedics', 'Oncology', 'Neurology', 'Paediatric'],
+        datasets: [{
+            label: 'Inpatient',
+            backgroundColor: 'rgba(255, 99, 132, 0.8)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [30, 40, 45, 28, 20]
+        },
+                {
+            label: 'Outpatient',
+            backgroundColor: 'rgba(99, 200, 132, 0.8)',
+            borderColor: 'rgb(99, 200, 132)',
+            data: [ 35, 25, 20, 30, 45]
+        }
+        ]
+    },
+
+    // Configuration options go here
+    options: {
+      fill: true,
+    }
+});
+</script>
+{% endblock %}

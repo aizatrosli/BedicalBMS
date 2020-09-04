@@ -81,97 +81,130 @@
       <div class="col-lg-4 grid-margin stretch-card">
         <div class="card">
           <div class="p-4 border-bottom bg-light">
-            <h4 class="card-title mb-0">{{ vtitle1 }}</h4>
+            <h4 class="card-title mb-0">Patients By Division</h4>
           </div>
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center pb-4">
-              <h4 class="card-title mb-0">Gender</h4>
-              <div id="stacked-bar-traffic-legend"></div>
+              <div id="mychart1"></div>
             </div>
-            <canvas id="myChart" data-target="Inpatient & Outpatient" style="height:250px"></canvas>
+            <canvas id="chart1" data-target="Inpatient & Outpatient" style="height:250px"></canvas>
           </div>
         </div>
       </div>
       <div class="col-lg-4 grid-margin stretch-card">
         <div class="card">
           <div class="p-4 border-bottom bg-light">
-            <h4 class="card-title mb-0">{{ vtitle2 }}</h4>
+            <h4 class="card-title mb-0">Outpatients vs. Inpatients Trend</h4>
           </div>
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center pb-4">
-              <h4 class="card-title mb-0">Sales Performance</h4>
-              <div id="line-traffic-legend"></div>
+              <div id="mychart2"></div>
             </div>
-             <canvas id="lineChart" data-target="Inpatient & Outpatient" style="height:250px"></canvas>
+             <canvas id="chart2" data-target="Inpatient & Outpatient" style="height:250px"></canvas>
           </div>
         </div>
       </div>
       <div class="col-lg-4 grid-margin stretch-card">
         <div class="card">
           <div class="p-4 border-bottom bg-light">
-            <h4 class="card-title mb-0">{{ titlec3 }}</h4>
+            <h4 class="card-title mb-0">Average LOS By Division</h4>
           </div>
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center pb-4">
-              <h4 class="card-title mb-0">Site Traffic</h4>
-              <div id="area-traffic-legend"></div>
+              <div id="mychart3"></div>
             </div>
+             <canvas id="chart3" data-target="Inpatient & Outpatient" style="height:250px"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 grid-margin">
+        <div class="card">
+          <div class="card-body">
             <div class="row">
-              <div class="col-md-4">
-                <h2 class="mb-0 font-weight-medium">3,245</h2>
-                <p class="mb-5 text-muted">Users</p>
+              <div class="col-lg-3 col-md-6">
+                <div class="d-flex">
+                  <div class="wrapper my-auto ml-auto ml-lg-0">
+                    <h2 class="mb-0 font-weight-semibold">{{ rk }}</h2>
+                  </div>
+                  <div class="wrapper">
+                    <h4 class="mb-0 font-weight-medium text-primary ml-lg-4">Available Staffs</h4>
+                  </div>
+                </div>
               </div>
-              <div class="col-md-4">
-                <h2 class="mb-0 font-weight-medium">12.54%</h2>
-                <p class="mb-5 text-muted">Bounce Rate</p>
+              <div class="col-lg-3 col-md-6">
+                <div class="d-flex">
+                  <div class="wrapper my-auto ml-auto ml-lg-0">
+                    <h2 class="mb-0 font-weight-semibold">{{ rl }}</h2>
+                  </div>
+                  <div class="wrapper">
+                    <h4 class="mb-0 font-weight-medium text-primary ml-lg-4">Average Treatment Cost</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="d-flex">
+                  <div class="wrapper my-auto ml-auto ml-lg-0">
+                    <h2 class="mb-0 font-weight-semibold">37 minutes</h2>
+                  </div>
+                  <div class="wrapper">
+                    <h4 class="mb-0 font-weight-medium text-primary ml-lg-4">Average ER Waiting Time</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="d-flex">
+                  <div class="wrapper my-auto ml-auto ml-lg-0">
+                    <h2 class="mb-0 font-weight-semibold">58.7%</h2>
+                  </div>
+                  <div class="wrapper">
+                    <h4 class="mb-0 font-weight-medium text-primary ml-lg-4">Bed Occupancy Rate</h4>
+                  </div>
+                </div>
               </div>
             </div>
-            <canvas id="areaChart" style="height:250px"></canvas>
           </div>
         </div>
       </div>
+    </div>
+    <div class="row">
       <div class="col-lg-4 grid-margin stretch-card">
         <div class="card">
           <div class="p-4 border-bottom bg-light">
-            <h4 class="card-title mb-0">Bar Chart</h4>
+            <h4 class="card-title mb-0">Occupancy Rate By Division</h4>
           </div>
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center pb-4">
-              <h4 class="card-title mb-0">Sales Revenue</h4>
-              <div id="bar-traffic-legend"></div>
+              <div id="mychart4"></div>
             </div>
-            <p class="mb-4">17% increase in sales than last week</p>
-            <canvas id="barChart" style="height:250px"></canvas>
+             <canvas id="chart4" data-target="Inpatient & Outpatient" style="height:250px"></canvas>
           </div>
         </div>
       </div>
       <div class="col-lg-4 grid-margin stretch-card">
         <div class="card">
           <div class="p-4 border-bottom bg-light">
-            <h4 class="card-title mb-0">Mixed Chart</h4>
+            <h4 class="card-title mb-0">ER Waiting Time in past 2 weeks</h4>
           </div>
           <div class="card-body">
-            <canvas id="mixed-chart" height="100"></canvas>
-            <div class="mr-5" id="mixed-chart-legend"></div>
+            <div class="d-flex justify-content-between align-items-center pb-4">
+              <div id="mychart5"></div>
+            </div>
+             <canvas id="chart5" data-target="Inpatient & Outpatient" style="height:250px"></canvas>
           </div>
         </div>
       </div>
       <div class="col-lg-4 grid-margin stretch-card">
         <div class="card">
-          <div class="p-4 pr-5 border-bottom bg-light d-flex justify-content-between">
-            <h4 class="card-title mb-0">Radar chart</h4>
-            <div id="radar-chart-legend"></div>
+          <div class="p-4 border-bottom bg-light">
+            <h4 class="card-title mb-0">Average Treatment cost By Division</h4>
           </div>
           <div class="card-body">
-            <canvas class="mt-4" id="radarChart" style="height:250px"></canvas>
-            <div class="d-flex mt-5 py-3 border-top">
-              <p class="mb-0 font-weight-semibold"><span class="dot-indicator bg-success"></span> Student A </p>
-              <p class="mb-0 ml-auto text-primary">56%</p>
+            <div class="d-flex justify-content-between align-items-center pb-4">
+              <div id="mychart6"></div>
             </div>
-            <div class="d-flex pt-3 border-top">
-              <p class="mb-0 font-weight-semibold"><span class="dot-indicator bg-success"></span> Student B</p>
-              <p class="mb-0 ml-auto text-primary">34%</p>
-            </div>
+             <canvas id="chart6" data-target="Inpatient & Outpatient" style="height:250px"></canvas>
           </div>
         </div>
       </div>
@@ -193,54 +226,155 @@
       console.log(error_data)
     }
   });
-  var ctx = document.getElementById('myChart').getContext('2d');
-  var chart = new Chart(ctx, {
-      // The type of chart we want to create
-      type: 'line',
+  var ctx1 = document.getElementById('chart1').getContext('2d');
+  var ctx2 = document.getElementById('chart2').getContext('2d');
+  var ctx3 = document.getElementById('chart3').getContext('2d');
+  var ctx4 = document.getElementById('chart4').getContext('2d');
+  var ctx5 = document.getElementById('chart5').getContext('2d');
+  var ctx6 = document.getElementById('chart6').getContext('2d');
+  var chart1 = new Chart(ctx1, {
+//Thetypeofchartwewanttocreate
+type:'horizontalBar',
 
-      // The data for our dataset
-      data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-          datasets: [{
-              label: 'My First dataset',
-              backgroundColor: 'rgb(255, 99, 132)',
-              borderColor: 'rgb(255, 99, 132)',
-              data: [0, 10, 5, 2, 20, 30, 45]
-          }]
-      },
+//Thedataforourdataset
+data:{
+labels:['Respiratory','Dermatology','Gynaecology','Neurology','Infectious Disease'],
+datasets:[{
+label:'Inpatient',
+backgroundColor:'rgba(255,99,132,0.8)',
+borderColor:'rgb(255,99,132)',
+data:[538,217,1659,377,932]
+},
+{
+label:'Outpatient',
+backgroundColor:'rgba(99,200,132,0.8)',
+borderColor:'rgb(99,200,132)',
+data:[1683,1450,2582,900,2012]
+}
+]
+},
 
-      // Configuration options go here
-      options: {}
-  });
-  var ltx = document.getElementById('lineChart').getContext('2d');
-  var myLineChart = new Chart(ltx, {
-      type: 'line',
-      data:  {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-          datasets: [{
-              label: 'My First dataset',
-              backgroundColor: 'rgb(255, 99, 132, 0.5)',
-              borderColor: 'rgb(255, 99, 132)',
-              data: [0, 10, 5, 2, 20, 30]
-          },
-            {
-              label: 'My Second dataset',
-              backgroundColor: 'rgb(255, 220, 132, 0.5)',
-              borderColor: 'rgb(255, 200, 132)',
-              data: [40, 40, 5, 12, 20, 30, 25]
-          },
-          ]
+//Configurationoptionsgohere
+options:{
+fill:true,
+}
+});
+  var chart2 = new Chart(ctx2, {
+type:'line',
+data:{
+labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'],
+datasets:[{
+label:'Inpatient',
+backgroundColor:'rgb(255,99,132,0.5)',
+borderColor:'rgb(255,99,132)',
+data:[247,330,192,210,320,425,232,520,47]
+},
+{
+label:'Outpatient',
+backgroundColor:'rgb(255,220,132,0.5)',
+borderColor:'rgb(255,200,132)',
+data:[404,430,563,480,612,720,350,825,165]
+},
+]
+},
+options:{
+fill:false
+}
+});
+  var chart3 = new Chart(ctx3, {
+//Thetypeofchartwewanttocreate
+type:'horizontalBar',
+
+//Thedataforourdataset
+data:{
+labels:['Respiratory','Dermatology','Gynaecology','Neurology','Infectious Disease'],
+datasets:[{
+label:'Average LOS',
+backgroundColor:'rgba(255,99,132,0.8)',
+borderColor:'rgb(255,99,132)',
+data:[3.6,2.1,5.7,9.4,3.2]
+}]
+},
+
+//Configurationoptionsgohere
+options:{
+fill:true,
+}
+});
+  var chart4 = new Chart(ctx4, {type:'horizontalBar',
+
+//Thedataforourdataset
+data:{
+labels:['Respiratory','Dermatology','Gynaecology','Neurology','Infectious Disease'],
+datasets:[{
+label:'Occupancy Rate',
+backgroundColor:'rgba(255,99,132,0.8)',
+borderColor:'rgb(255,99,132)',
+data:[78,44,64,49,52]
+}]
+},
+
+//Configurationoptionsgohere
+options:{
+fill:true,
+      scales: {
+  xAxes: [
+    {
+      ticks: {
+        min: 0,
+        max: this.max,// Your absolute max value
+        callback: function (value) {
+          return (value / this.max * 100).toFixed(0) + '%'; // convert it to percentage
+        },
       },
-      options: {
-        fill: false
-      }
-  });
-  $(document).ready(function() {
-    function dashgen(title, dataset) {
-      console.log(title);
-      console.log(dataset);
-    }
-  });
+      scaleLabel: {
+        display: true,
+        labelString: 'Percentage',
+      },
+    },
+  ],
+},
+}
+});
+  var chart5 = new Chart(ctx5, {type:'line',
+data:{
+labels:[''],
+datasets:[{
+label:'Inpatient',
+backgroundColor:'rgb(255,99,132,0.5)',
+borderColor:'rgb(255,99,132)',
+data:[24,34,39,56,47,33,21,52,34,42,19,23,28,44]
+}]
+},
+options:{
+fill:false
+}
+});
+  var chart6 = new Chart(ctx6, {type:'horizontalBar',
+
+//Thedataforourdataset
+data:{
+labels:['Respiratory','Dermatology','Gynaecology','Neurology','Infectious Disease'],
+datasets:[{
+label:'Inpatient',
+backgroundColor:'rgba(255,99,132,0.8)',
+borderColor:'rgb(255,99,132)',
+data:[3627,2417,1841,4328,1320]
+},
+{
+label:'Outpatient',
+backgroundColor:'rgba(99,200,132,0.8)',
+borderColor:'rgb(99,200,132)',
+data:[434,132,350,650,212]
+}
+]
+},
+
+//Configurationoptionsgohere
+options:{
+fill:true,
+}
+});
 
 </script>
 

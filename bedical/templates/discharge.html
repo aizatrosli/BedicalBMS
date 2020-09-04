@@ -120,7 +120,7 @@
                 <p><small>Financial Cleared</small></p>
             </div>
             <div class="stepwizardcustom-step col-xs-3">
-                <a href="#step-4" type="button" class="btn btn-default stepwizardcustombtn-circle" disabled="disabled">4</a>
+                <a href="#step-5" type="button" class="btn btn-default stepwizardcustombtn-circle" disabled="disabled">5</a>
                 <p><small>Discharge</small></p>
             </div>
         </div>
@@ -128,68 +128,81 @@
             <form role="form">
         <div class="panel panel-primary setup-content" id="step-1">
             <div class="panel-heading">
-                 <h3 class="panel-title">Shipper</h3>
+                 <h3 class="panel-title">Occupied</h3>
             </div>
             <div class="panel-body">
-                <div class="form-group">
-                    <label class="control-label">First Name</label>
-                    <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter First Name" />
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Last Name</label>
-                    <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Last Name" />
-                </div>
-                <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+                <h1></h1>
+                <h4 class="my-lg-3">Initiate discharge process!</h4>
+                <button class="btn btn-warning nextBtn pull-right" type="button">Start Discharge</button>
             </div>
         </div>
-
         <div class="panel panel-primary setup-content" id="step-2">
             <div class="panel-heading">
-                 <h3 class="panel-title">Destination</h3>
+                 <h3 class="panel-title">Start Discharge</h3>
             </div>
             <div class="panel-body">
                 <div class="form-group">
-                    <label class="control-label">Company Name</label>
-                    <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Name" />
+                    <label class="control-label">Itemized Bill</label>
+                    <textarea maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Itemized Bill"></textarea>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">Company Address</label>
-                    <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Address" />
+                    <label class="control-label">Total Payment Amount</label>
+                    <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Total Payment Amount" />
                 </div>
-                <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+                <span class="input-group-append">
+                    <button class="my-lg-3 file-upload-browse btn btn-info" type="button">Upload</button>
+                </span>
+                <button class="btn btn-primary nextBtn pull-right" type="button">Doctor Approved</button>
             </div>
         </div>
-
         <div class="panel panel-primary setup-content" id="step-3">
             <div class="panel-heading">
-                 <h3 class="panel-title">Schedule</h3>
+                 <h3 class="panel-title">Doctor Approved</h3>
             </div>
             <div class="panel-body">
+                <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input"> Insurance covered? <i class="input-helper"></i></label>
+                            </div>
                 <div class="form-group">
-                    <label class="control-label">Company Name</label>
-                    <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Name" />
+                    <label class="control-label">Insurer Name</label>
+                    <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Insurer Company Name" />
                 </div>
-                <div class="form-group">
-                    <label class="control-label">Company Address</label>
-                    <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Address" />
-                </div>
-                <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+                <button class="btn btn-primary nextBtn pull-right" type="button">Financial Cleared</button>
             </div>
         </div>
-
         <div class="panel panel-primary setup-content" id="step-4">
             <div class="panel-heading">
-                 <h3 class="panel-title">Cargo</h3>
+                 <h3 class="panel-title">Financial Cleared</h3>
             </div>
             <div class="panel-body">
-                <div class="form-group">
-                    <label class="control-label">Company Name</label>
-                    <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Name" />
+                <div class="table-responsive my-lg-4">
+                  <table id="dishargetable" class="table table-bordered">
+                      <tbody><tr>
+                            <td>
+                              <strong>Name :</strong> {{request.user.groups.all.0}}</td>
+                            <td>
+                              <strong>Gender :</strong> {{bio.gender}}</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <strong>Department :</strong> {{bio.department}}</td>
+                            <td>
+                              <strong>Contact :</strong> {{bio.contact}}</td>
+                          </tr>
+                        </tbody>
+                  </table>
                 </div>
-                <div class="form-group">
-                    <label class="control-label">Company Address</label>
-                    <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Address" />
-                </div>
+                <button class="btn btn-success pull-right" type="submit">Discharge</button>
+            </div>
+        </div>
+                <div class="panel panel-primary setup-content" id="step-5">
+            <div class="panel-heading">
+                 <h3 class="panel-title">Discharge</h3>
+            </div>
+            <div class="panel-body">
+                <h4 class="my-lg-3">Patient Discharged!</h4>
+                <p> Click finish to initiate bed cleaning process! (This will notify cleaner team)</p>
                 <button class="btn btn-success pull-right" type="submit">Finish!</button>
             </div>
         </div>

@@ -54,6 +54,14 @@ def staffprofile(request, bid, *args, **kwargs):
 
 
 @login_required(login_url='/login/')
+def supportpage(request, *args, **kwargs):
+    context = {
+        'suppdict': [{'DPT': 'Respiratory', 'CN': '03-653 9002', 'WH': '24 hours'}, {'DPT': 'Dermatology', 'CN': '03-653 9012', 'WH': '24 hours'}, {'DPT': 'Gynaecology', 'CN': '03-653 9022', 'WH': '24 hours'}, {'DPT': 'Neurology', 'CN': '03-653 9032', 'WH': '24 hours'}, {'DPT': 'Infectious Disease', 'CN': '03-653 9042', 'WH': '24 hours'}, {'DPT': 'Emergency', 'CN': '03-653 9052', 'WH': '24 hours'}, {'DPT': 'Support', 'CN': '03-653 9062', 'WH': '24 hours'}, {'DPT': 'Technical', 'CN': '03-653 9072', 'WH': '8am – 12am'}, {'DPT': 'Admin', 'CN': '03-653 9082', 'WH': '8am – 6pm'}, {'DPT': 'Finance', 'CN': '03-653 9092', 'WH': '8am – 6pm'}, {'DPT': 'Pharmacy', 'CN': '03-653 9102', 'WH': '8am – 6pm'}],
+    }
+    return render(request, 'support.html', context)
+
+
+@login_required(login_url='/login/')
 def admissionpage(request, *args, **kwargs):
     form = BedManageForm()
     if request.method == 'POST':
@@ -133,6 +141,8 @@ def dashboardpage(request, *args, **kwargs):
         'tpa': msql(rawsqlstr['Total Patient Admitted']).to_numpy().ravel().item(),
         'ab': msql(rawsqlstr['Available Beds']).to_numpy().ravel().item(),
         'pie': msql(rawsqlstr['Patient in Emergency']).to_numpy().ravel().item(),
+        'rk': msql(rawsqlstr['rawk']).to_numpy().ravel().item(),
+        'rl': msql(rawsqlstr['rawl']).to_numpy().ravel().item(),
     }
 
     return render(request, 'dash.html', context)

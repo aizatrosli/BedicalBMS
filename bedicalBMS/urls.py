@@ -21,6 +21,7 @@ from bedical.views import *
 urlpatterns = [
     path('', mainpage, name='home'),
     path('appointment/', appointmentpage, name='appointment'),
+    path('support/', supportpage, name='support'),
     path('dashboard/', dashboardpage, name='dash'),
     path('login/', loginpage, name='login'),
     path('profile/', profilepage, name='profile'),

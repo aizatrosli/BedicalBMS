@@ -16,6 +16,8 @@ rawsqlstr = OrderedDict({
     'Patient in Emergency': raw_h,
     'Number of Patient per Doctor': raw_i,
     'Number of Admission by Doctor': raw_j,
+    'rawk': raw_k,
+    'rawl': raw_l,
     })
 
 

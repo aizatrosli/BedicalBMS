@@ -88,3 +88,11 @@ group by to_char(diagnosisdate::date,'YYYY-MM'),
 b.doctorfirstname||' '||b.doctorlastname
 order by count(patientid) desc
 """
+
+raw_k="""
+select count(*) as staffs from bedical_nurse
+"""
+
+raw_l="""
+select sum(paymentamount) as cost from bedical_payment
+"""
