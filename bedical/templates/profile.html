@@ -10,9 +10,17 @@
             <div class="profile-body">
               <div class="row">
                 <div class="col-md-9">
-                      <h3>{{bio.lastname}}, {{bio.firstname}}</h3>
                       <div class="table-responsive">
+                        <div class="d-flex align-items-center mb-2 justify-content-between flex-wrap">
+                        <img class="img-bg-2 rounded-circle" src="/staticfiles/images/faces/face8.jpg" alt="profile image">
+                        </div>
                         <table class="table table-borderless w-100 mt-4">
+                          <tbody>
+                          <tr>
+                            <td> <h3>{{bio.lastname}}, {{bio.firstname}}</h3> </td>
+                            <td> </td>
+                          </tr>
+                          </tbody>
                           <tbody><tr>
                             <td>
                               <strong>Role :</strong> {{request.user.groups.all.0}}</td>
@@ -28,94 +36,110 @@
                         </tbody></table>
                       </div>
                       <div class="row">
-                        <div class="col-8 mt-5">
+                        <div id="todonote" class="col-8 mt-5">
+                          {% if "Doctor" == request.user.groups.all.0|stringformat:"s" %}
                           <h5 class="mb-5">Surgery on Line</h5>
                           <div class="stage-wrapper pl-4">
                             <div class="stages border-left pl-5 pb-4">
                               <div class="btn btn-icons btn-rounded stage-badge btn-inverse-success">
-                                <i class="mdi mdi-texture"></i>
+                                <i class="mdi mdi-account-badge"></i>
                               </div>
                               <div class="d-flex align-items-center mb-2 justify-content-between flex-wrap">
-                                <h5 class="mb-0 mr-2">Task Added</h5>
-                                <small class="text-muted">28 mins ago</small>
-                              </div>
-                              <p>Admin is a full featured, multipurpose, premium bootstrap admin template built with Bootstrap 4 Framework</p>
-                            </div>
-                            <div class="stages border-left pl-5 pb-4">
-                              <div class="btn btn-icons btn-rounded stage-badge btn-inverse-danger">
-                                <i class="mdi mdi-download"></i>
+                                <h5 class="mb-0 mr-2">Today</h5>
                               </div>
                               <div class="d-flex align-items-center mb-2 justify-content-between flex-wrap">
-                                <h5 class="mb-0 mr-2">Download Completed</h5>
-                                <small class="text-muted">45 mins ago</small>
+                                <p><strong>Angie Lee</strong> - OT4</p>
+                                <small class="text-muted">10 AM</small>
                               </div>
-                              <p>one of the best admin panel templates. With this bootstrap admin template, you can quick start your project.</p>
-                              <div class="file-icon-wrapper">
-                                <div class="btn btn-outline-danger file-icon mr-3">
-                                  <i class="mdi mdi-file-pdf"></i>
-                                </div>
-                                <div class="btn btn-outline-primary file-icon">
-                                  <i class="mdi mdi-file-word"></i>
-                                </div>
+                              <div class="d-flex align-items-center mb-2 justify-content-between flex-wrap">
+                                <p><strong>John Garman</strong> - OT4</p>
+                                <small class="text-muted">2 PM</small>
                               </div>
-                            </div>
-                            <div class="stages pl-5 pb-4">
                               <div class="btn btn-icons btn-rounded stage-badge btn-inverse-primary">
-                                <i class="mdi mdi-checkbox-marked-circle-outline"></i>
-                              </div>
-                              <div class="d-flex align-items-center mb-2 justify-content-between flex-wrap">
-                                <h5 class="mb-0 mr-2">New Task Completed</h5>
-                                <small class="text-muted">55 mins ago</small>
-                              </div>
-                              <p>Admin dashboard works seamlessly on all major web browsers and devices.</p>
+                              <i class="mdi mdi-account-badge"></i>
+                            </div>
+                            <div class="d-flex align-items-center mb-2 justify-content-between flex-wrap">
+                              <h5 class="mb-0 mr-2">Tomorrow</h5>
+                            </div>
+                            <div class="d-flex align-items-center mb-2 justify-content-between flex-wrap">
+                              <p><strong>Joseph Costello</strong> - OT4</p>
+                              <small class="text-muted">10 AM</small>
+                            </div>
                             </div>
                           </div>
-                        </div>
-                        <div class="col-4 mt-5">
-                          <h5 class="mb-5">Stages</h5>
+                          {% elif request.user.groups.all.0|stringformat:"s" == "Nurse" %}
+                          <h5 class="mb-5">Surgery on Line</h5>
                           <div class="stage-wrapper pl-4">
                             <div class="stages border-left pl-5 pb-4">
                               <div class="btn btn-icons btn-rounded stage-badge btn-inverse-success">
-                                <i class="mdi mdi-texture"></i>
+                                <i class="mdi mdi-account-badge"></i>
                               </div>
                               <div class="d-flex align-items-center mb-2 justify-content-between flex-wrap">
-                                <h5 class="mb-0 mr-2">Task Added</h5>
-                                <small class="text-muted">28 mins ago</small>
+                                <h5 class="mb-0 mr-2">Today</h5>
                               </div>
-                              <p>Admin is a full featured, multipurpose, premium bootstrap admin template built with Bootstrap 4 Framework</p>
-                            </div>
-                            <div class="stages border-left pl-5 pb-4">
-                              <div class="btn btn-icons btn-rounded stage-badge btn-inverse-danger">
-                                <i class="mdi mdi-download"></i>
-                              </div>
+                              {% for obj in aptoday %}
                               <div class="d-flex align-items-center mb-2 justify-content-between flex-wrap">
-                                <h5 class="mb-0 mr-2">Download Completed</h5>
-                                <small class="text-muted">45 mins ago</small>
+                                <p><strong>{{obj.a}}}</strong> {{obj.b}} - {{obj.c}}</p>
+                                <small class="text-muted">{{ obj.d }}</small>
                               </div>
-                              <p>one of the best admin panel templates. With this bootstrap admin template, you can quick start your project.</p>
-                              <div class="file-icon-wrapper">
-                                <div class="btn btn-outline-danger file-icon mr-3">
-                                  <i class="mdi mdi-file-pdf"></i>
-                                </div>
-                                <div class="btn btn-outline-primary file-icon">
-                                  <i class="mdi mdi-file-word"></i>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="stages pl-5 pb-4">
+                              {% endfor %}
                               <div class="btn btn-icons btn-rounded stage-badge btn-inverse-primary">
-                                <i class="mdi mdi-checkbox-marked-circle-outline"></i>
-                              </div>
+                              <i class="mdi mdi-account-badge"></i>
+                            </div>
+                            <div class="d-flex align-items-center mb-2 justify-content-between flex-wrap">
+                              <h5 class="mb-0 mr-2">Tomorrow</h5>
+                            </div>
+                              {% for obj in aptorow %}
                               <div class="d-flex align-items-center mb-2 justify-content-between flex-wrap">
-                                <h5 class="mb-0 mr-2">New Task Completed</h5>
-                                <small class="text-muted">55 mins ago</small>
+                                <p><strong>{{obj.a}}}</strong> {{obj.b}} - {{obj.c}}</p>
+                                <small class="text-muted">{{ obj.d }}</small>
                               </div>
-                              <p>Admin dashboard works seamlessly on all major web browsers and devices.</p>
+                              {% endfor %}
                             </div>
                           </div>
+                          {% endif %}
+                        </div>
+                        <div id="patientlist" class="col-4 mt-5">
+                          {% if "Doctor" == request.user.groups.all.0|stringformat:"s" %}
+                          <h5 class="mb-5">Appointment</h5>
+                          <div class="stage-wrapper pl-4">
+                            <div class="stages border-left pl-5 pb-4">
+                              <h5 class="mb-0 mr-2">Today</h5>
+                              {% for obj in addtoday %}
+                              <div class="d-flex align-items-center mb-2 justify-content-between flex-wrap">
+                                <small class="text-muted">{{obj.c}}</small>
+                                <p> <strong>{{obj.a}}</strong>  {{obj.b}}</p>
+                              </div>
+                              {% endfor %}
+                            </div>
+                            <div class="stages border-left pl-5 pb-4">
+                              <h5 class="mb-0 mr-2">Tomorrow</h5>
+                              {% for obj in addnottoday %}
+                              <div class="d-flex align-items-center mb-2 justify-content-between flex-wrap">
+                                <small class="text-muted">{{obj.c}}</small>
+                                <p> <strong>{{obj.a}}</strong>  {{obj.b}}</p>
+                              </div>
+                              {% endfor %}
+                            </div>
+                          </div>
+                          {% elif request.user.groups.all.0|stringformat:"s" == "Nurse" %}
+                            <h5 class="mb-5">Patient Admitted</h5>
+                          <div class="stage-wrapper pl-4">
+                            <div class="stages border-left pl-5 pb-4">
+                              <h5 class="mb-0 mr-2">Today</h5>
+                              {% for obj in addtoday %}
+                              <div class="d-flex align-items-center mb-2 justify-content-between flex-wrap">
+                                <small class="text-muted">{{obj.c}}</small>
+                                <p> <strong>{{obj.a}}</strong>  {{obj.b}}</p>
+                              </div>
+                              {% endfor %}
+                            </div>
+                          {% endif %}
+
                         </div>
                       </div>
                 </div>
+
                 <div class="col-md-3">
                   <h5 class="my-4">Today Patient List</h5>
                   <ul class="timeline">
@@ -132,6 +156,8 @@
           </div>
         </div>
       </div>
+      </div>
     </div>
-  </div>
+
+
 {% endblock %}

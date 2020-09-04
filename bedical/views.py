@@ -39,9 +39,13 @@ def searchpage(request, *args, **kwargs):
 
 @login_required(login_url='/login/')
 def patientprofile(request, bid, *args, **kwargs):
-
+    bio = BedicalPatient.objects.filter(patientid=bid).all()[0]
+    pbm = BedicalBedmanagement.objects.filter(patientid=bid).order_by('-admissiondate').all()
+    pbp = BedicalPayment.objects.filter(patientid=bid).all()
     context = {
-        'bid': bid,
+        'bio': bio,
+        'pbm': pbm,
+        'pbp': pbp,
     }
     return render(request, 'patient.html', context)
 
@@ -158,7 +162,20 @@ def profilepage(request, *args, **kwargs):
         context = {
             'admission_list': bmdata,
             'bio': {'lastname': bn.nurselastname, 'firstname': bn.nursefirstname, 'contact': bn.contact, 'department': bn.department, 'gender': bn.gender},
-        }
+            'addtoday': [{'a': 'Jan Chatten-Brown', 'b': '2N14A', 'c': 'Regular'},
+                         {'a': 'John Redmond', 'b': '2N11A', 'c': 'Regular'},
+                         {'a': 'Ann Parsons', 'b': '2N14A', 'c': 'Regular'},
+                         {'a': 'Dale Reicheneder', 'b': '2W10A', 'c': 'Serious'},
+                         {'a': 'Steven Thomas', 'b': '2N6A', 'c': 'Serious'},
+                         {'a': 'John Mooney', 'b': '2W6A', 'c': 'Regular'},
+                         {'a': 'Joseph Costello', 'b': '2W6A', 'c': 'Regular'},
+                         {'a': 'Jillian Rice-Loew', 'b': '1S14A', 'c': 'Chronic'},
+                         {'a': 'Angie Lee', 'b': '1S12A', 'c': 'Chronic'},
+                         {'a': 'Robert Nau', 'b': '1S4A', 'c': 'Chronic'},
+                         {'a': 'John Garman', 'b': '1S13D', 'c': 'Chronic'}],
+            'aptoday': [{'a': 'Jan Chatten-Brown', 'b': '2N14A', 'c': 'Regular Rounds', 'd': 'Starts at 8AM'}, {'a': 'John Redmond', 'b': '2N11A', 'c': 'Regular Rounds', 'd': ' '}, {'a': 'Ann Parsons', 'b': '2N14A', 'c': 'Regular Rounds', 'd': ' '}, {'a': 'Steven Thomas', 'b': '2N6A', 'c': 'Regular Rounds', 'd': ' '}, {'a': 'Dale Reicheneder', 'b': '2W10A', 'c': 'Regular Rounds', 'd': 'Starts at 4PM'}, {'a': 'John Mooney', 'b': '2W6A', 'c': 'Regular Rounds', 'd': ' '}, {'a': 'Joseph Costello', 'b': '2W6A– Regular Rounds', 'c': ' ', 'd': ' '}],
+            'aptorow': [{'a': 'Jillian Rice-Loew', 'b': '1S14A', 'c': 'Regular Rounds', 'd': 'Starts at 8AM'}, {'a': 'Angie Lee', 'b': '1S12A', 'c': 'Regular Rounds', 'd': ' '}, {'a': 'Robert Nau', 'b': '1S4A', 'c': 'Regular Rounds', 'd': ' '}, {'a': 'John Garman', 'b': '1S13D', 'c': 'Regular Rounds', 'd': ' '}, {'a': 'Leonard Cooper', 'b': 'Follow up', 'c': 'Outpatient', 'd': '12PM Onwards'}, {'a': 'Rachael Hawkins', 'b': 'Follow up', 'c': 'Outpatient', 'd': ' '}, {'a': 'Adam Murphy', 'b': 'Follow up', 'c': 'Outpatient', 'd': ' '}, {'a': 'Ross Geller', 'b': 'Newly Registered', 'c': 'Outpatient', 'd': ' '}, {'a': 'Phoebe Buffay', 'b': 'Newly Registered', 'c': 'Outpatient', 'd': ' '}, {'a': 'Monica David', 'b': 'Follow up', 'c': 'Outpatient', 'd': ' '}],
+           }
     elif 'Doctor' in getgroup:
         bd = BedicalDoctor.objects.select_related().filter(doctorfirstname=request.user.first_name, doctorlastname=request.user.last_name)[0]
         bmdata = BedicalBedmanagement.objects.filter(doctorid=bd.doctorid, bedstatus='Occupied')
@@ -166,6 +183,23 @@ def profilepage(request, *args, **kwargs):
             'admission_list': bmdata,
             'bio': {'lastname': bd.doctorlastname, 'firstname': bd.doctorfirstname, 'contact': bd.contact,
                     'department': bd.department, 'gender': bd.gender},
+            'addtoday': [{'a': 'Jan Chatten-Brown', 'b': '2N14A', 'c': 'Regular rounds'},
+                         {'a': 'John Redmond', 'b': '2N11A', 'c': 'Regular rounds'},
+                         {'a': 'Ann Parsons', 'b': '2N14A', 'c': 'Regular rounds'},
+                         {'a': 'Steven Thomas', 'b': '2N6A', 'c': 'Regular rounds'},
+                         {'a': 'Dale Reicheneder', 'b': '2W10A', 'c': 'Regular rounds'},
+                         {'a': 'John Mooney', 'b': '2W6A', 'c': 'Regular rounds'},
+                         {'a': 'Joseph Costello', 'b': '2W6A', 'c': 'Regular rounds'}],
+            'addnottoday': [{'a': 'Jillian Rice-Loew', 'b': '1S14A', 'c': 'Regular rounds'},
+                            {'a': 'Angie Lee', 'b': '1S12A', 'c': 'Regular rounds'},
+                            {'a': 'Robert Nau', 'b': '1S4A', 'c': 'Regular rounds'},
+                            {'a': 'John Garman', 'b': '1S13D', 'c': 'Regular rounds'},
+                            {'a': 'Leonard Cooper', 'b': 'Follow up', 'c': 'Outpatient'},
+                            {'a': 'Rachael Hawkins', 'b': 'Follow up', 'c': 'Outpatient'},
+                            {'a': 'Adam Murphy', 'b': 'Follow up', 'c': 'Outpatient'},
+                            {'a': 'Ross Geller', 'b': 'Newly registered', 'c': 'Outpatient'},
+                            {'a': 'Phoebe Buffay', 'b': 'Newly registered', 'c': 'Outpatient'},
+                            {'a': 'Monica David', 'b': 'Follow up', 'c': 'Outpatient'}],
         }
     return render(request, 'profile.html', context)
 

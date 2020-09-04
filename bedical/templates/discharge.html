@@ -180,15 +180,28 @@
                   <table id="dishargetable" class="table table-bordered">
                       <tbody><tr>
                             <td>
-                              <strong>Name :</strong> {{request.user.groups.all.0}}</td>
+                              <strong>Name :</strong>Chatten-Brown, Jan</td>
                             <td>
-                              <strong>Gender :</strong> {{bio.gender}}</td>
+                              <strong>Gender :</strong> F </td>
                           </tr>
                           <tr>
                             <td>
-                              <strong>Department :</strong> {{bio.department}}</td>
+                              <strong>Department :</strong> Infectious Diseases </td>
                             <td>
-                              <strong>Contact :</strong> {{bio.contact}}</td>
+                              <strong>Bed No. :</strong> 2N14A </td>
+                          </tr>
+                         <tr>
+                            <td>
+                              <strong>Doctor :</strong> Finkelthal, Ophir </td>
+                            <td>
+                              <strong>Department :</strong> Infectious Diseases </td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              <strong>Insurer :</strong> AIA </td>
+                            <td>
+                              <strong>Total Payment :</strong> $1999.00 </td>
                           </tr>
                         </tbody>
                   </table>
@@ -242,7 +255,7 @@
                     {% for obj in bedmanage%}
                       <tr>
                         <td>{{obj.managementid}}</td>
-                        <td><a class="patientid" data-target="#exampleModal" data-whatever="{{obj.patientid.patientid}}">{{obj.patientid.patientlastname}}, {{obj.patientid.patientfirstname}}</a></td>
+                        <td><a href="/patient/{{obj.patientid.patientid}}" class="patientid">{{obj.patientid.patientlastname}}, {{obj.patientid.patientfirstname}}</a></td>
                         <td>{{obj.diagnosisid.icd10cmcode}}</td>
                         <td>{{obj.admissiondate}}</td>
                         {% if "Doctor approved" == obj.bedstatus %}

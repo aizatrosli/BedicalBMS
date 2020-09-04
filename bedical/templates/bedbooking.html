@@ -206,7 +206,7 @@
                   {% for obj in bedbook%}
                     <tr>
                       <td>{{obj.pk}}</td>
-                      <td><a href="" class="patientid" data-toggle="modal" data-target="#exampleModal" data-whatever="{{obj.patientid.patientid}},">{{obj.patientid.patientlastname}}, {{obj.patientid.patientfirstname}}</a></td>
+                      <td><a href="/patient/{{obj.patientid.patientid}}" class="patientid">{{obj.patientid.patientlastname}}, {{obj.patientid.patientfirstname}}</a></td>
                       <td>{{obj.diagnosisid.icd10cmcode}}</td>
                       <td>{{obj.admissiondate}}</td>
                       <td>{{obj.bedid.roomtype}}</td>

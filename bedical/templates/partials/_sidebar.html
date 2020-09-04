@@ -5,7 +5,15 @@
     <li class="nav-item nav-profile">
       <a href="{% url 'profile' %}" class="nav-link">
         <div class="profile-image">
+          {% if "Doctor" == request.user.groups.all.0|stringformat:"s" %}
           <img class="img-xs rounded-circle" src="{% static 'images/faces/face8.jpg' %}" alt="profile image">
+          {% elif "Nurse" == request.user.groups.all.0|stringformat:"s" %}
+          <img class="img-xs rounded-circle" src="{% static 'images/faces/face10.jpg' %}" alt="profile image">
+          {% elif "Admin" == request.user.groups.all.0|stringformat:"s" %}
+          <img class="img-xs rounded-circle" src="{% static 'images/faces/face7.jpg' %}" alt="profile image">
+          {% elif "Patient" == request.user.groups.all.0|stringformat:"s" %}
+          <img class="img-xs rounded-circle" src="{% static 'images/faces/face9.jpg' %}" alt="profile image">
+          {% endif %}
           <div class="dot-indicator bg-success"></div>
         </div>
         <div class="text-wrapper">

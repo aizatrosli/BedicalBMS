@@ -207,7 +207,7 @@
                     {% for obj in bedmanage%}
                       <tr>
                         <td>{{obj.managementid}}</td>
-                        <td><a class="patientid" data-target="#exampleModal" data-whatever="{{obj.patientid.patientid}}">{{obj.patientid.patientlastname}}, {{obj.patientid.patientfirstname}}</a></td>
+                        <td><a href="/patient/{{obj.patientid.patientid}}" class="patientid">{{obj.patientid.patientlastname}}, {{obj.patientid.patientfirstname}}</a></td>
                         <td>{{obj.diagnosisid.icd10cmcode}}</td>
                         <td>{{obj.admissiondate}}</td>
                         {% if "Doctor approved" == obj.bedstatus %}
